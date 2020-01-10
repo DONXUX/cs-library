@@ -86,6 +86,38 @@ class LoanController extends IController {
 
 
   /// 책을 검색합니다.
-  void searchBook() {
+  /// 모드 1 : 전체(도서 이름, 저자, 출판사) 검색
+  /// 모드 2 : 도서 이름 검색
+  /// 모드 3 : 저자 검색
+  /// 모드 4 : 출판사 검색
+  List<Book> searchBook(String searchStr, int mode) {
+    // TODO : 검색 기능 구현
+    switch(mode){
+      case 1:
+        return searchBookAll(searchStr);
+        break;
+      case 2:
+        return searchBookName(searchStr);
+        break;
+      case 3:
+        return searchBookAuthor(searchStr);
+        break;
+      case 4:
+        return searchBookPublisher(searchStr);
+        break;
+      default:
+    }
+  }
+  List<Book> searchBookAll(String searchStr){
+
+  }
+  List<Book> searchBookName(String searchStr){
+
+  }
+  List<Book> searchBookAuthor(String searchStr){
+
+  }
+  List<Book> searchBookPublisher(String searchStr){
+
   }
 }

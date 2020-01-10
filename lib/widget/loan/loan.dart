@@ -2,7 +2,9 @@ import 'package:cs_book_loan/controller/loan/loan.dart';
 import 'package:cs_book_loan/data/book.dart';
 import 'package:cs_book_loan/res/lib.dart';
 import 'package:cs_book_loan/widget/common/components.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 /// 도서 대출 현황 화면을 담당합니다.
 
@@ -20,52 +22,43 @@ class LoanWidgetState extends State<LoanWidget> {
   Widget build(BuildContext context) {
     _controller.init(context);
     return Scaffold(
-
-      // 앱 바
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        elevation: 0.0,
-        backgroundColor: Colors.indigo,
-        centerTitle: true,
-        title: Text(
-          R.string.book_list,
-          style: TextStyle(
-              fontSize: 22.0,
-              color: Colors.white
-          ),
-          textAlign: TextAlign.center,
-        ),
-        actions: <Widget>[
-          IconButton(
-            onPressed: (){},
-            icon: Icon(Icons.search, color:Colors.white),
-          )
-        ]
-      ),
-
-        body: Stack(
-          children: <Widget>[
-
-            // 배경
-            ClipPath(
-              clipper: CustomShapeClipper(),
-              child: AnimatedContainer(
-                height: 350.0,
-                color: Colors.indigo,
-                duration: Duration(milliseconds: 1300),
+        body: CustomScrollView(
+          slivers: <Widget>[
+            SliverAppBar(
+              flexibleSpace: FlexibleSpaceBar(
+                collapseMode: CollapseMode.pin,
+                centerTitle: true,
+                title: Text("도서목록", textAlign: TextAlign.center, style: TextStyle(color:Colors.white, fontSize: 24.0)),
+//                background: Container(
+//                  margin: EdgeInsets.only(top:80.0),
+//                  child: Container(
+//                    alignment: Alignment.center,
+//                    child: Text("도서 목록", textAlign: TextAlign.center, style:TextStyle(
+//                      color: Colors.white,
+//                      fontSize: 36.0,
+//                    )),
+//                  ),
+//                )
               ),
+              floating: true,
+              pinned: true,
+              automaticallyImplyLeading: false,
+              centerTitle: true,
+              expandedHeight: 180.0,
+                actions: <Widget>[
+                  IconButton(
+                    onPressed: (){},
+                    icon: Icon(Icons.search, color:Colors.white),
+                  )
+                ]
             ),
 
             // 도서 리스트
-            SingleChildScrollView(
-              child: Container(
-                child: Center(
-                    child: Column(
-                      children: _controller.books
-                          .map(_bookContents)
-                          .toList(),
-                    )
-                ),
+            SliverList(
+              delegate: SliverChildListDelegate(
+                  _controller.books
+                      .map(_bookContents)
+                      .toList()
               ),
             ),
           ],
@@ -76,12 +69,12 @@ class LoanWidgetState extends State<LoanWidget> {
   /// 도서를 UI 위젯으로 변환합니다.
   Widget _bookContents(final Book book) {
 
-    /// 책 컨텐츠
+    // 책 컨텐츠
     return Stack(
       children: <Widget>[
         Card(
             margin: EdgeInsets.all(8.0),
-            elevation: 8.0,
+            elevation: 4.0,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
@@ -104,7 +97,7 @@ class LoanWidgetState extends State<LoanWidget> {
                 ),
 
                 Container(
-                  margin: EdgeInsets.only(top: 24.0, bottom: 8.0, left: 8.0, right: 8.0),
+                  margin: EdgeInsets.only(top: 24.0, bottom: 8.0, left: 16.0, right: 16.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     mainAxisSize: MainAxisSize.max,

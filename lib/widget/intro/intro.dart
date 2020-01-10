@@ -20,10 +20,9 @@ class IntroWidget extends Bootstrapper {
             Center(
 
               // 로고
-              // TODO : 인트로 화면에 보여질 적절한 로고로 교체
               child: SvgPicture.asset(R.drawable.logo,
-                width: 320.0,
-                height: 320.0,
+                width: 120.0,
+                height: 120.0,
                 color: Colors.white,
               )
             ),
