@@ -14,8 +14,11 @@ class IntroWidget extends Bootstrapper {
     _controller.init(context);
     return Scaffold(
       body: Container(
+        color: Colors.indigo,
         child: Center(
-          // TODO : 인트로화면에 보여질 적절한 로고로 교체
+
+          // 로고
+          // TODO : 인트로 화면에 보여질 적절한 로고로 교체
           child: SvgPicture.asset(R.drawable.logo,
             width: 160.0,
             height: 160.0,
