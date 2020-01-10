@@ -1,5 +1,13 @@
 {
   "app_name" : "CS Library",
 
+  "book_list" : "Book list",
+
+  "volume" : "book",
+  "remaining_books" : "Remaining books",
+
+  "possible_loan" : "Loan Possible",
+  "impossible_loan" : "Loan Impossible",
+
   "commin_alert_field_close_app" : "Do you want to close CS Library?"
 }

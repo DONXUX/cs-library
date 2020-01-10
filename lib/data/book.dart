@@ -8,7 +8,7 @@ class Book {
   final String name;
   final String author;
   final String publisher;
-  final String publish_year;
+  final int publish_year;
   final int loan_possible_num;
   final bool loan_status;
 

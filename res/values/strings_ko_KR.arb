@@ -1,5 +1,13 @@
 {
   "app_name" : "CS Library",
 
+  "book_list" : "도서 목록",
+
+  "volume" : "권",
+  "remaining_books" : "남은 도서",
+
+  "possible_loan" : "대출가능",
+  "impossible_loan" : "대출불가",
+
   "commin_alert_field_close_app" : "CS 도서 대출 서비스를 종료하시겠습니까?"
 }

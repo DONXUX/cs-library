@@ -13,10 +13,10 @@ void main() {
   runApp(
     MaterialApp(
       theme: new ThemeData(
-        primarySwatch: Colors.amber,
-        primaryColor: const Color(0xffffc107),
-        accentColor: const Color(0xffffd740),
-        canvasColor: const Color(0xfffafafa),
+        primarySwatch: Colors.indigo,
+        primaryColor: Colors.indigo,
+        accentColor: Colors.indigoAccent,
+        canvasColor: Colors.white,
       ),
       home: IntroWidget(),
       localizationsDelegates: [
