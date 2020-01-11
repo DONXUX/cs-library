@@ -4,6 +4,7 @@ import 'package:cs_book_loan/controller/lib.dart';
 import 'package:cs_book_loan/data/book.dart';
 import 'package:cs_book_loan/lib.dart';
 import 'package:cs_book_loan/res/lib.dart';
+import 'package:cs_book_loan/res/widgets.dart';
 import 'package:cs_book_loan/widget/main/loan.dart';
 import 'package:flutter/material.dart';
 
@@ -17,5 +18,6 @@ class LoanController extends IController {
     super.init(context, setState: setState);
   }
 
-  void convertListWidget(int mode) => Navigator.pushNamed(context, R.widget.list, arguments: mode);
+  void convertListWidget(int mode)
+  => Navigator.pushNamed(context, R.widget.list, arguments: ListArguments(mode, false, ""));
 }

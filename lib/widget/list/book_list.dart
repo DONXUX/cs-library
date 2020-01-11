@@ -1,6 +1,7 @@
 import 'package:cs_book_loan/controller/list/book_list.dart';
 import 'package:cs_book_loan/data/book.dart';
 import 'package:cs_book_loan/res/lib.dart';
+import 'package:cs_book_loan/res/widgets.dart';
 import 'package:cs_book_loan/widget/common/components.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,13 +10,23 @@ import 'package:flutter/material.dart';
 
 class BookListWidget extends StatelessWidget {
   final BookListController _controller = BookListController();
-  int mode;
+  int _mode;
+  bool _searchMode;
+  String _searchStr;
 
   @override
   Widget build(BuildContext context) {
-    mode = ModalRoute.of(context).settings.arguments;
+    final ListArguments args = ModalRoute.of(context).settings.arguments;
+    _mode = args.mode;
+    _searchMode = args.searchMode;
+    _searchStr = args.str;
+    print("디버깅 : " + _searchStr);
+
     _controller.init(context);
-    _controller.setMode(mode);
+    _controller.searchMode = _searchMode;
+    _controller.searchStr = _searchStr;
+    _controller.setMode(_mode);
+
     return Scaffold(
       body: Container(
         child: ListView(
@@ -29,7 +40,7 @@ class BookListWidget extends StatelessWidget {
 
   /// 도서를 UI 위젯으로 변환합니다.
   Widget _bookContents(final Book book) {
-    print("모드 : " + mode.toString());
+
     // 책 컨텐츠
     return Stack(
       children: <Widget>[

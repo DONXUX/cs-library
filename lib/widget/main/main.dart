@@ -1,3 +1,4 @@
+import 'package:cs_book_loan/controller/common/search.dart';
 import 'package:cs_book_loan/controller/main/main.dart';
 import 'package:cs_book_loan/res/lib.dart';
 import 'package:cs_book_loan/widget/common/footer.dart';
@@ -17,6 +18,7 @@ class MainWidget extends StatefulWidget {
 class _MainWidgetState extends State<MainWidget> with SingleTickerProviderStateMixin {
   final MainController _controller = MainController();
   TabController ctr;
+  SearchController _searchController = SearchController();
 
   @override
   void initState(){
@@ -37,7 +39,7 @@ class _MainWidgetState extends State<MainWidget> with SingleTickerProviderStateM
         appBar: AppBar(
           automaticallyImplyLeading: false,
           elevation: 0.0,
-          title: SearchBar(),
+          title: SearchBar(_controller),
           bottom: TabBar(
             controller: ctr,
             tabs: TabWidget(),

@@ -21,3 +21,12 @@ Map<String, WidgetBuilder> makeRoutes(final Widgets w) => {
   w.loan: (BuildContext context) => LoanWidget(),
   w.list: (BuildContext context) => BookListWidget(),
 };
+
+// 리스트 전달 매개변수 입니다.
+class ListArguments {
+  final int mode;
+  final bool searchMode;
+  final String str;
+
+  ListArguments(this.mode, this.searchMode, this.str);
+}
