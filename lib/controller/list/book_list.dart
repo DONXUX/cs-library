@@ -119,8 +119,9 @@ class BookListController extends IController {
     if(searchMode){
       // 검색
       if(searchStr != "") {
-        _books = searchBook(0);
+        _books = searchBook(1);
       }
+      print(_books);
       for(var book in books) {
         _debugBooks.add(book);
       }

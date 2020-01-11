@@ -57,12 +57,23 @@ class Debug {
         loan_possible_num: 11,
         loan_status: true
     );
+    Book book6= Book(
+        id: 6,
+        name: "fuck that shit mother fucker!",
+        author: "mother",
+        publisher: "corner",
+        publish_year: 2018,
+        kind: 4,
+        loan_possible_num: 4,
+        loan_status: true
+    );
 
     _debugBook.add(book1);
     _debugBook.add(book2);
     _debugBook.add(book3);
     _debugBook.add(book4);
     _debugBook.add(book5);
+    _debugBook.add(book6);
   }
 
   List<Book> get debugBook => _debugBook;
