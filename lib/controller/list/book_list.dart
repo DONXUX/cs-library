@@ -83,8 +83,13 @@ class BookListController extends IController {
 
   List<Book> searchBookAll(){
     List<Book> filterBooks = List();
+    for(Book book in books){
+      if(book.name.contains(searchStr)) {
+        filterBooks.add(book);
+      }
+    }
     // TODO : 전체 검색 기능 구현(김학률)
-    // 이름, 저자, 출판사 전체 검색하여 리스트로 저잠한다.
+    // 이름, 저자, 출판사 전체 검색하여 리스트로 저장한다.
     // DB 연동되기전엔 books가 전체 리스트이다.
     // searchStr 문자열로
     // books 리스트를 필터링 하여야함.
