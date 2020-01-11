@@ -47,7 +47,7 @@ class _MainWidgetState extends State<MainWidget> with SingleTickerProviderStateM
           controller: ctr,
           children: <Widget>[
             LoanWidget(),
-            BookListWidget(1),
+            BookListWidget(),
           ],
         )
       );

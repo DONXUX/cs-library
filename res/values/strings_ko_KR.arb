@@ -11,6 +11,9 @@
   "impossible_loan" : "대출불가",
 
   "favorite" : "즐겨찾기",
+  "search" : "검색"
 
+  "guide" : "대출안내 : 실습조교실(30-311호)에 방문하셔서 대출하시면 됩니다.",
+  "copyright" : "Copyright 2020, GNU 전산개발연구실 all rights reserved.",
   "commin_alert_field_close_app" : "CS 도서 대출 서비스를 종료하시겠습니까?"
 }

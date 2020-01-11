@@ -49,7 +49,7 @@ class LoanWidget extends StatelessWidget {
             padding: const EdgeInsets.only(left: 16.0, right: 8.0),
             child: Container(child: Icon(Icons.book, color: Colors.black54)),
           ),
-          Text("대출안내 : 실습조교실(30-311호)에 방문하셔서 대출하시면 됩니다.",
+          Text(R.string.guide,
               style: TextStyle(fontSize: 13.0, color: Colors.black54)),
         ],
       ),
@@ -116,23 +116,23 @@ class LoanWidget extends StatelessWidget {
 
   // 카테고리 리스트
   List<Widget> _CategoreyList() => [
-    _CategoryContent(Icon(Icons.add), "전체"),
-    _CategoryContent(Icon(Icons.computer), "컴퓨터 공학"),
-    _CategoryContent(Icon(Icons.settings_ethernet), "프로그래밍 언어"),
-    _CategoryContent(Icon(Icons.build), "개발 방법론"),
-    _CategoryContent(Icon(Icons.security), "네트워크/보안"),
-    _CategoryContent(Icon(Icons.add), "인공지능"),
-    _CategoryContent(Icon(Icons.add), "OS"),
-    _CategoryContent(Icon(Icons.add), "데이터베이스"),
-    _CategoryContent(Icon(Icons.add), "자료구조/알고리즘"),
-    _CategoryContent(Icon(Icons.http), "웹 프로그래밍"),
-    _CategoryContent(Icon(Icons.phone_android), "모바일 프로그래밍"),
-    _CategoryContent(Icon(Icons.add), "그래픽"),
+    _CategoryContent(Icon(Icons.add), "전체", 0),
+    _CategoryContent(Icon(Icons.computer), "컴퓨터 공학", 2),
+    _CategoryContent(Icon(Icons.settings_ethernet), "프로그래밍 언어", 3),
+    _CategoryContent(Icon(Icons.build), "개발 방법론", 4),
+    _CategoryContent(Icon(Icons.security), "네트워크/보안", 5),
+    _CategoryContent(Icon(Icons.add), "인공지능", 6),
+    _CategoryContent(Icon(Icons.add), "OS", 7),
+    _CategoryContent(Icon(Icons.add), "데이터베이스", 8),
+    _CategoryContent(Icon(Icons.add), "자료구조/알고리즘", 9),
+    _CategoryContent(Icon(Icons.http), "웹 프로그래밍", 10),
+    _CategoryContent(Icon(Icons.phone_android), "모바일 프로그래밍", 11),
+    _CategoryContent(Icon(Icons.add), "그래픽", 12),
     ];
 
   // 카테고리 컨텐츠 UI
-  Widget _CategoryContent(final Icon icon, final String name) => GestureDetector(
-    onTap: (){},
+  Widget _CategoryContent(final Icon icon, final String name, int mode) => GestureDetector(
+    onTap: (){ _controller.convertListWidget(mode); },
     child: Card(
         elevation: 2.0,
         margin: EdgeInsets.all(0.0),

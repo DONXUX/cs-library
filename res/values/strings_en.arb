@@ -11,6 +11,9 @@
   "impossible_loan" : "Loan Impossible",
 
   "favorite" : "Favorite",
+  "search" : "Search",
 
+  "guide" : "Loan Information: Visit the Practice Class (30-311) to borrow.",
+  "copyright" : "Copyright 2020, GNU Computational Development Lab all rights reserved.",
   "commin_alert_field_close_app" : "Do you want to close CS Library?"
 }

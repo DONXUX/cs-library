@@ -9,28 +9,27 @@ import 'package:flutter/material.dart';
 
 class BookListWidget extends StatelessWidget {
   final BookListController _controller = BookListController();
-
-  BookListWidget(int mode) {
-    _controller.setMode(mode);
-  }
+  int mode;
 
   @override
   Widget build(BuildContext context) {
+    mode = ModalRoute.of(context).settings.arguments;
     _controller.init(context);
+    _controller.setMode(mode);
     return Scaffold(
       body: Container(
         child: ListView(
-          children: _controller.books
+          children: _controller.debugBooks
               .map(_bookContents)
               .toList(),
-        )
+        ),
       )
     );
   }
 
   /// 도서를 UI 위젯으로 변환합니다.
   Widget _bookContents(final Book book) {
-
+    print("모드 : " + mode.toString());
     // 책 컨텐츠
     return Stack(
       children: <Widget>[
@@ -88,5 +87,4 @@ class BookListWidget extends StatelessWidget {
       ],
     );
   }
-
 }

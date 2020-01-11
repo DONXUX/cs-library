@@ -1,3 +1,4 @@
+import 'package:cs_book_loan/res/lib.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -48,7 +49,7 @@ class _SearchFieldState extends State<SearchField> {
   Widget build(BuildContext context) {
     return TextField(
       decoration: InputDecoration(
-        hintText: '검색',
+        hintText: R.string.search,
         border: InputBorder.none,
         icon: Icon(
           Icons.search,

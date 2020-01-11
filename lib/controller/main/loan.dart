@@ -16,4 +16,6 @@ class LoanController extends IController {
   void init(BuildContext context, {void Function(Runnable) setState}) async {
     super.init(context, setState: setState);
   }
+
+  void convertListWidget(int mode) => Navigator.pushNamed(context, R.widget.list, arguments: mode);
 }

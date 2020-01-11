@@ -1,3 +1,4 @@
+import 'package:cs_book_loan/res/lib.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +8,7 @@ class Footer extends StatelessWidget{
     return Container(
         margin: EdgeInsets.all(24.0),
         child: Text(
-            "Copyright 2020, GNU 전산개발연구실 all rights reserved.",
+            R.string.copyright,
             style: TextStyle(
               fontSize: 10.0,
               color: Colors.black54,

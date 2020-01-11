@@ -35,15 +35,15 @@ class MainController extends IController {
     }
   }
   List<Book> searchBookAll(String searchStr){
-
+    // TODO : 전체 검색 기능 구현
   }
   List<Book> searchBookName(String searchStr){
-
+    // TODO : 이름 검색 기능 구현
   }
   List<Book> searchBookAuthor(String searchStr){
-
+    // TODO : 저자 검색 기능 구현
   }
   List<Book> searchBookPublisher(String searchStr){
-
+    // TODO : 출판사 검색 기능 구현
   }
 }
