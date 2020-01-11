@@ -1,7 +1,7 @@
 import 'package:cs_book_loan/controller/lib.dart';
 import 'package:cs_book_loan/lib.dart';
 import 'package:cs_book_loan/res/lib.dart';
-import 'package:cs_book_loan/widget/loan/loan.dart';
+import 'package:cs_book_loan/widget/main/loan.dart';
 import 'package:flutter/material.dart';
 
 /// 인트로 화면의 동작을 담당합니다.

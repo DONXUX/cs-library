@@ -1,4 +1,4 @@
-import 'package:cs_book_loan/controller/loan/loan.dart';
+import 'package:cs_book_loan/controller/main/loan.dart';
 import 'package:cs_book_loan/data/book.dart';
 import 'package:cs_book_loan/res/lib.dart';
 import 'package:cs_book_loan/widget/common/components.dart';
@@ -46,9 +46,13 @@ class LoanWidgetState extends State<LoanWidget> {
               centerTitle: true,
               expandedHeight: 180.0,
                 actions: <Widget>[
+
+                  // 검색 UI
                   IconButton(
-                    onPressed: (){},
                     icon: Icon(Icons.search, color:Colors.white),
+                    onPressed: (){
+                      showSearch(context: context, delegate: DataSearch());
+                    },
                   )
                 ]
             ),
@@ -124,6 +128,48 @@ class LoanWidgetState extends State<LoanWidget> {
           )
         ),
       ],
+    );
+  }
+}
+
+class DataSearch extends SearchDelegate<String> {
+  final books = [
+    "book1",
+    "book2",
+    "book3",
+  ];
+
+  final recentBooks = [
+    "book1",
+    "book2",
+  ];
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return [
+      IconButton(icon: Icon(Icons.clear), onPressed: () {},)
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(icon: AnimatedIcon(icon: AnimatedIcons.menu_arrow, progress: transitionAnimation,), onPressed: (){},);
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    final suggesetionList = query.isEmpty ? recentBooks : books;
+
+    return ListView.builder(
+      itemBuilder: (context, index) => ListTile(
+        leading: Icon(Icons.book),
+        title: Text(suggesetionList[index]),
+      ),
+      itemCount: suggesetionList.length,
     );
   }
 }

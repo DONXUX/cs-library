@@ -4,7 +4,7 @@ import 'package:cs_book_loan/controller/lib.dart';
 import 'package:cs_book_loan/data/book.dart';
 import 'package:cs_book_loan/lib.dart';
 import 'package:cs_book_loan/res/lib.dart';
-import 'package:cs_book_loan/widget/loan/loan.dart';
+import 'package:cs_book_loan/widget/main/loan.dart';
 import 'package:flutter/material.dart';
 
 /// 도서 대출 화면의 동작을 담당합니다.
@@ -83,7 +83,6 @@ class LoanController extends IController {
     // tryDownloadBooks();
     return _books ?? [];
   }
-
 
   /// 책을 검색합니다.
   /// 모드 1 : 전체(도서 이름, 저자, 출판사) 검색
