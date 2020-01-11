@@ -41,6 +41,30 @@ class $ko_KR extends S {
   @override
   TextDirection get textDirection => TextDirection.ltr;
 
+  @override
+  String get volume => "권";
+  @override
+  String get app_name => "CS Library";
+  @override
+  String get search => "검색";
+  @override
+  String get copyright => "Copyright 2020, GNU 전산개발연구실 all rights reserved.";
+  @override
+  String get remaining_books => "남은 도서";
+  @override
+  String get book => "도서";
+  @override
+  String get impossible_loan => "대출불가";
+  @override
+  String get book_list => "도서 목록";
+  @override
+  String get commin_alert_field_close_app => "CS 도서 대출 서비스를 종료하시겠습니까?";
+  @override
+  String get favorite => "즐겨찾기";
+  @override
+  String get possible_loan => "대출가능";
+  @override
+  String get guide => "대출안내 : 실습조교실(30-311호)에 방문하셔서 대출하시면 됩니다.";
 }
 
 class $en extends S {
