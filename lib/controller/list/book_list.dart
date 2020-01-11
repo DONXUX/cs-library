@@ -2,6 +2,7 @@ import 'package:cs_book_loan/controller/lib.dart';
 import 'package:cs_book_loan/data/book.dart';
 import 'package:cs_book_loan/data/debug.dart';
 import 'package:cs_book_loan/lib.dart';
+import 'package:cs_book_loan/net/client.dart';
 import 'package:cs_book_loan/res/lib.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +11,7 @@ import 'package:flutter/material.dart';
 class BookListController extends IController {
   List<Book> _books;
   List<Book> _debugBooks;
+  Connect c;
   int mode;
   int sort;
 
@@ -32,20 +34,11 @@ class BookListController extends IController {
   // 도서리스트가 비어있다면 다운로드를 시도합니다.
   List<Book> get books {
     if(_books != null) return _books;
-    // TODO: 다운로드
-    // tryDownloadBooks();
-
+    // 다운로드
+    List<Book> allBooks = List();
+    allBooks = c.tryDownloadBooks();
     return _books ?? [];
   }
-  /////////////////////////DEBUG///////////////////////////
-  List<Book> get debugBooks {
-    if(_debugBooks != null) return _debugBooks;
-    // TODO: 다운로드
-    // tryDownloadBooks();
-
-    return _debugBooks ?? [];
-  }
-  /////////////////////////////////////////////////////////
 
   // 모드를 세팅합니다.
   void setMode(int mode){
@@ -53,8 +46,6 @@ class BookListController extends IController {
     setListBook();
   }
 
-  // 도서 목록을 모드에 따라 다운로드 받습니다.
-  // TODO : DB와 연동하여 다운로드 구현
   /////////////////////////DEBUG///////////////////////////
   void setListBook(){
     _debugBooks.clear();
@@ -63,6 +54,11 @@ class BookListController extends IController {
         _debugBooks.add(book);
       }
     }
+  }
+
+  List<Book> get debugBooks {
+    if(_debugBooks != null) return _debugBooks;
+    return _debugBooks ?? [];
   }
   /////////////////////////////////////////////////////////
 }

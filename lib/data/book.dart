@@ -31,3 +31,4 @@ class Book {
         assert(loan_possible_num != null),
         assert(loan_status != null);
 }
+
