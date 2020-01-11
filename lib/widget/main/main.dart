@@ -1,6 +1,7 @@
 import 'package:cs_book_loan/controller/common/search.dart';
 import 'package:cs_book_loan/controller/main/main.dart';
 import 'package:cs_book_loan/res/lib.dart';
+import 'package:cs_book_loan/widget/common/components.dart';
 import 'package:cs_book_loan/widget/common/footer.dart';
 import 'package:cs_book_loan/widget/common/search.dart';
 import 'package:cs_book_loan/widget/list/book_list.dart';
@@ -43,6 +44,7 @@ class _MainWidgetState extends State<MainWidget> with SingleTickerProviderStateM
           bottom: TabBar(
             controller: ctr,
             tabs: TabWidget(),
+            indicatorColor: Colors.white,
           )
         ),
         body: WillPopScope(
@@ -73,3 +75,4 @@ class _MainWidgetState extends State<MainWidget> with SingleTickerProviderStateM
   }
 
 }
+
