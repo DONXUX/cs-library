@@ -16,6 +16,7 @@ class BookListController extends IController {
   int mode;
   int sort;
   bool searchMode;
+  bool favoritesMode;
   String searchStr = "";    // 검색 문자열
 
   Debug d;
@@ -122,7 +123,10 @@ class BookListController extends IController {
     }
 
     // 즐겨찾기 모드
-    // TODO : 즐겨찾기 모드 구현
+    if(favoritesMode){
+      print("즐겨찾기");
+      // TODO : 즐겨찾기 모드 구현
+    }
 
     // 카테고리 모드
     for(var book in books){

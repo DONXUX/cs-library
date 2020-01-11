@@ -12,19 +12,34 @@ class BookListWidget extends StatelessWidget {
   final BookListController _controller = BookListController();
   int _mode;
   bool _searchMode;
+  bool _favoritesMode = false;
   String _searchStr;
 
   @override
   Widget build(BuildContext context) {
-    final ListArguments args = ModalRoute.of(context).settings.arguments;
-    _mode = args.mode;
-    _searchMode = args.searchMode;
-    _searchStr = args.str;
+    final ListArguments args = ModalRoute
+        .of(context)
+        .settings
+        .arguments;
+    print("args 디버깅" + args.toString());
+
+    if(args != null) {
+      _mode = args.mode;
+      _searchMode = args.searchMode;
+      _searchStr = args.str;
+    }
+    else{
+      _mode = 0;
+      _searchMode = false;
+      _searchStr = "";
+      _favoritesMode = true;
+    }
     print("디버깅 : " + _searchStr);
 
     _controller.init(context);
     _controller.searchMode = _searchMode;
     _controller.searchStr = _searchStr;
+    _controller.favoritesMode = _favoritesMode;
     _controller.setMode(_mode);
 
     return Scaffold(

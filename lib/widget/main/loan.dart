@@ -6,6 +6,7 @@ import 'package:cs_book_loan/widget/common/footer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 /// 도서 플래그먼트 위젯을 담당합니다.
 
@@ -116,18 +117,18 @@ class LoanWidget extends StatelessWidget {
 
   // 카테고리 리스트
   List<Widget> _CategoreyList() => [
-    _CategoryContent(Icon(Icons.add), "전체", 0),
+    _CategoryContent(Icon(MdiIcons.desktopMacDashboard), "전체", 0),
     _CategoryContent(Icon(Icons.computer), "컴퓨터 공학", 2),
-    _CategoryContent(Icon(Icons.settings_ethernet), "프로그래밍 언어", 3),
-    _CategoryContent(Icon(Icons.build), "개발 방법론", 4),
-    _CategoryContent(Icon(Icons.security), "네트워크/보안", 5),
-    _CategoryContent(Icon(Icons.add), "인공지능", 6),
-    _CategoryContent(Icon(Icons.add), "OS", 7),
-    _CategoryContent(Icon(Icons.add), "데이터베이스", 8),
-    _CategoryContent(Icon(Icons.add), "자료구조/알고리즘", 9),
+    _CategoryContent(Icon(MdiIcons.languageCpp), "프로그래밍 언어", 3),
+    _CategoryContent(Icon(MdiIcons.cogs), "개발 방법론", 4),
+    _CategoryContent(Icon(MdiIcons.ipNetwork), "네트워크/보안", 5),
+    _CategoryContent(Icon(MdiIcons.brain), "인공지능", 6),
+    _CategoryContent(Icon(MdiIcons.windows), "OS", 7),
+    _CategoryContent(Icon(MdiIcons.database), "데이터베이스", 8),
+    _CategoryContent(Icon(MdiIcons.graph), "자료구조/알고리즘", 9),
     _CategoryContent(Icon(Icons.http), "웹 프로그래밍", 10),
     _CategoryContent(Icon(Icons.phone_android), "모바일 프로그래밍", 11),
-    _CategoryContent(Icon(Icons.add), "그래픽", 12),
+    _CategoryContent(Icon(MdiIcons.aspectRatio), "그래픽", 12),
     ];
 
   // 카테고리 컨텐츠 UI
