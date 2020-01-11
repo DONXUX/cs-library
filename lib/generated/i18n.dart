@@ -22,8 +22,10 @@ class S implements WidgetsLocalizations {
   TextDirection get textDirection => TextDirection.ltr;
 
   String get app_name => "CS Library";
+  String get book => "Book";
   String get book_list => "Book list";
   String get commin_alert_field_close_app => "Do you want to close CS Library?";
+  String get favorite => "Favorite";
   String get impossible_loan => "Loan Impossible";
   String get possible_loan => "Loan Possible";
   String get remaining_books => "Remaining books";
@@ -43,11 +45,15 @@ class $ko_KR extends S {
   @override
   String get remaining_books => "남은 도서";
   @override
+  String get book => "도서";
+  @override
   String get impossible_loan => "대출불가";
   @override
   String get book_list => "도서 목록";
   @override
   String get commin_alert_field_close_app => "CS 도서 대출 서비스를 종료하시겠습니까?";
+  @override
+  String get favorite => "즐겨찾기";
   @override
   String get possible_loan => "대출가능";
 }

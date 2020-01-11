@@ -14,10 +14,10 @@ class IntroController extends IController {
     super.init(context, setState: setState);
 
     Future.delayed(const Duration(milliseconds: 1500), () {
-      _convertLoanWidget();
+      _convertMainWidget();
     });
   }
 
   /// 도서대출 현황 화면으로 이동합니다.
-  void _convertLoanWidget() => Navigator.popAndPushNamed(context, R.widget.loan);
+  void _convertMainWidget() => Navigator.popAndPushNamed(context, R.widget.main);
 }

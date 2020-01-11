@@ -5,6 +5,7 @@ import 'common.dart';
 class Drawable extends Resource {
 
   String get logo => _routeSVG('logo');
+  String get ai => _routeSVG('ai');
 
   String _route(final String route) => 'res/drawable/' + route;
   String _routePNG(final String route) => _route(route + '.png');
