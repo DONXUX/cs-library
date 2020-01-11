@@ -15,5 +15,13 @@
 
   "guide" : "Loan Information: Visit the Practice Class (30-311) to borrow.",
   "copyright" : "Copyright 2020, GNU Computational Development Lab all rights reserved.",
-  "commin_alert_field_close_app" : "Do you want to close CS Library?"
+  "commin_alert_field_close_app" : "Do you want to close CS Library?",
+
+  "common_alert_title" : "Notice",
+  "common_alert_select": "Select",
+  "common_alert_confirm": "Confirm",
+  "common_alert_cancel": "Cancel",
+  "common_alert_choose_yes": "Yes",
+  "common_alert_choose_no": "No",
+  "common_alert_field_close_app": "Do you want to close CS Library?"
 }

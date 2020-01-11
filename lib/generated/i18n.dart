@@ -25,6 +25,13 @@ class S implements WidgetsLocalizations {
   String get book => "Book";
   String get book_list => "Book list";
   String get commin_alert_field_close_app => "Do you want to close CS Library?";
+  String get common_alert_cancel => "Cancel";
+  String get common_alert_choose_no => "No";
+  String get common_alert_choose_yes => "Yes";
+  String get common_alert_confirm => "Confirm";
+  String get common_alert_field_close_app => "Do you want to close CS Library?";
+  String get common_alert_select => "Select";
+  String get common_alert_title => "Notice";
   String get copyright => "Copyright 2020, GNU Computational Development Lab all rights reserved.";
   String get favorite => "Favorite";
   String get guide => "Loan Information: Visit the Practice Class (30-311) to borrow.";
@@ -42,23 +49,37 @@ class $ko_KR extends S {
   TextDirection get textDirection => TextDirection.ltr;
 
   @override
+  String get common_alert_choose_no => "아니오";
+  @override
+  String get copyright => "Copyright 2020, GNU 전산개발연구실 all rights reserved.";
+  @override
+  String get common_alert_cancel => "취소";
+  @override
+  String get book => "도서";
+  @override
+  String get common_alert_title => "알림";
+  @override
+  String get common_alert_field_close_app => "CS Library 을 종료하시겠습니까?";
+  @override
+  String get commin_alert_field_close_app => "CS 도서 대출 서비스를 종료하시겠습니까?";
+  @override
+  String get common_alert_choose_yes => "예";
+  @override
+  String get common_alert_select => "선택";
+  @override
+  String get common_alert_confirm => "확인";
+  @override
   String get volume => "권";
   @override
   String get app_name => "CS Library";
   @override
   String get search => "검색";
   @override
-  String get copyright => "Copyright 2020, GNU 전산개발연구실 all rights reserved.";
-  @override
   String get remaining_books => "남은 도서";
-  @override
-  String get book => "도서";
   @override
   String get impossible_loan => "대출불가";
   @override
   String get book_list => "도서 목록";
-  @override
-  String get commin_alert_field_close_app => "CS 도서 대출 서비스를 종료하시겠습니까?";
   @override
   String get favorite => "즐겨찾기";
   @override

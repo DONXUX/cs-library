@@ -45,12 +45,15 @@ class _MainWidgetState extends State<MainWidget> with SingleTickerProviderStateM
             tabs: TabWidget(),
           )
         ),
-        body: TabBarView(
-          controller: ctr,
-          children: <Widget>[
-            LoanWidget(),
-            BookListWidget(),
-          ],
+        body: WillPopScope(
+          onWillPop: _controller.onBackPressed,
+          child: TabBarView(
+            controller: ctr,
+            children: <Widget>[
+              LoanWidget(),
+              BookListWidget(),
+            ],
+          ),
         )
       );
   }
