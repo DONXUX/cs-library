@@ -22,11 +22,11 @@ Map<String, WidgetBuilder> makeRoutes(final Widgets w) => {
   w.list: (BuildContext context) => BookListWidget(),
 };
 
-// 리스트 전달 매개변수 입니다.
+// Book List에 전달되는 매개변수 입니다.
 class ListArguments {
-  final int mode;
-  final bool searchMode;
-  final String str;
+  final int category;         // 카테고리
+  final bool searchMode;      // 검색모드 (활성/비활성)
+  final String str;           // 검색 문자열
 
-  ListArguments(this.mode, this.searchMode, this.str);
+  ListArguments(this.category, this.searchMode, this.str);
 }

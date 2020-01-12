@@ -24,7 +24,7 @@ class BookListWidget extends StatelessWidget {
     print("args 디버깅" + args.toString());
 
     if(args != null) {
-      _mode = args.mode;
+      _mode = args.category;
       _searchMode = args.searchMode;
       _searchStr = args.str;
     }
@@ -40,7 +40,7 @@ class BookListWidget extends StatelessWidget {
     _controller.searchMode = _searchMode;
     _controller.searchStr = _searchStr;
     _controller.favoritesMode = _favoritesMode;
-    _controller.setMode(_mode);
+    _controller.setCategory(_mode);
 
     return Scaffold(
       body: Container(
