@@ -24,6 +24,8 @@ dependencies:
   flutter_bloc:
 
   http: ^0.11.3+17
+  shared_preferences: ^0.4.3
+  path_provider: ^1.5.1
 
   material_design_icons_flutter: ^3.2.3895
 

@@ -30,6 +30,7 @@ void main() {
         const Locale('ko', 'KR')
       ],
       routes: makeRoutes(R.widget),
-    ));
+    )
+  );
 }
 
