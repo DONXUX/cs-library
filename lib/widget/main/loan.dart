@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cs_book_loan/controller/main/loan.dart';
 import 'package:cs_book_loan/data/book.dart';
 import 'package:cs_book_loan/res/lib.dart';
@@ -8,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:cs_book_loan/data/category.dart';
-
+import 'package:http/http.dart' as http;
 /// 도서 플래그먼트 위젯을 담당합니다.
 
 class LoanWidget extends StatelessWidget {
@@ -147,3 +149,4 @@ class LoanWidget extends StatelessWidget {
       ),
   );
 }
+
