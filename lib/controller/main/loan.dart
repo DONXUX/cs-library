@@ -18,6 +18,7 @@ class LoanController extends IController {
     super.init(context, setState: setState);
   }
 
-  void convertListWidget(int mode)
-  => Navigator.pushNamed(context, R.widget.list, arguments: ListArguments(mode, false, ""));
+  // 도서 리스트 화면으로 전환합니다.
+  void convertListWidget(int category)
+  => Navigator.pushNamed(context, R.widget.list, arguments: ListArguments(category, false, ""));
 }

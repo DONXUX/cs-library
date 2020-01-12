@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:cs_book_loan/data/category.dart';
 
 /// 도서 플래그먼트 위젯을 담당합니다.
 
@@ -33,6 +34,7 @@ class LoanWidget extends StatelessWidget {
     );
   }
 
+  // 도서 대출 가이드 컨테이너
   Widget _GuideLoan() => Container(
     height: 42.0,
     decoration: BoxDecoration(
@@ -112,28 +114,21 @@ class LoanWidget extends StatelessWidget {
       shrinkWrap: true,
       crossAxisCount: 4,
       padding: EdgeInsets.only(bottom: 16.0),
-      children: _CategoreyList(),
+      children: _getCategoryListToWidget(),
     );
 
-  // 카테고리 리스트
-  List<Widget> _CategoreyList() => [
-    _CategoryContent(Icon(MdiIcons.desktopMacDashboard), "전체", 0),
-    _CategoryContent(Icon(Icons.computer), "컴퓨터 공학", 2),
-    _CategoryContent(Icon(MdiIcons.languageCpp), "프로그래밍 언어", 3),
-    _CategoryContent(Icon(MdiIcons.cogs), "개발 방법론", 4),
-    _CategoryContent(Icon(MdiIcons.ipNetwork), "네트워크/보안", 5),
-    _CategoryContent(Icon(MdiIcons.brain), "인공지능", 6),
-    _CategoryContent(Icon(MdiIcons.windows), "OS", 7),
-    _CategoryContent(Icon(MdiIcons.database), "데이터베이스", 8),
-    _CategoryContent(Icon(MdiIcons.graph), "자료구조/알고리즘", 9),
-    _CategoryContent(Icon(Icons.http), "웹 프로그래밍", 10),
-    _CategoryContent(Icon(Icons.phone_android), "모바일 프로그래밍", 11),
-    _CategoryContent(Icon(MdiIcons.aspectRatio), "그래픽", 12),
-    ];
+  // 카테고리 리스트를 위젯으로 변환합니다.
+  List<Widget> _getCategoryListToWidget() {
+    List<Widget> list = List();
+    for(Category c in CategoryList()) {
+      list.add(_CategoryContent(c.icon, c.category, c.key));
+    }
+    return list;
+  }
 
   // 카테고리 컨텐츠 UI
-  Widget _CategoryContent(final Icon icon, final String name, int mode) => GestureDetector(
-    onTap: (){ _controller.convertListWidget(mode); },
+  Widget _CategoryContent(final Icon icon, final String category, int key) => GestureDetector(
+    onTap: (){ _controller.convertListWidget(key); },
     child: Card(
         elevation: 2.0,
         margin: EdgeInsets.all(0.0),
@@ -146,54 +141,9 @@ class LoanWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             icon,
-            Text(name, style: TextStyle(fontSize: 11.0)),
+            Text(category, style: TextStyle(fontSize: 11.0)),
           ],
         ),
       ),
   );
-}
-
-
-
-///////////////////////////////////////////////////
-class DataSearch extends SearchDelegate<String> {
-  final books = [
-    "book1",
-    "book2",
-    "book3",
-  ];
-
-  final recentBooks = [
-    "book1",
-    "book2",
-  ];
-  @override
-  List<Widget> buildActions(BuildContext context) {
-    return [
-      IconButton(icon: Icon(Icons.clear), onPressed: () {},)
-    ];
-  }
-
-  @override
-  Widget buildLeading(BuildContext context) {
-    return IconButton(icon: AnimatedIcon(icon: AnimatedIcons.menu_arrow, progress: transitionAnimation,), onPressed: (){},);
-  }
-
-  @override
-  Widget buildResults(BuildContext context) {
-
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    final suggesetionList = query.isEmpty ? recentBooks : books;
-
-    return ListView.builder(
-      itemBuilder: (context, index) => ListTile(
-        leading: Icon(Icons.book),
-        title: Text(suggesetionList[index]),
-      ),
-      itemCount: suggesetionList.length,
-    );
-  }
 }

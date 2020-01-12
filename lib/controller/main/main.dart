@@ -10,13 +10,11 @@ import 'package:flutter/material.dart';
 /// 메인화면 동작을 담당합니다.
 
 class MainController extends IController {
-  Connect c;
   String searchStr = "";
 
   @override
   void init(BuildContext context, {void Function(Runnable) setState}) async {
     super.init(context, setState: setState);
-    c = Connect();
   }
 
   // 검색 텍스트 필드로부터 Input 데이터를 가져옵니다.

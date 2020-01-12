@@ -12,21 +12,19 @@ class BookListController extends IController {
   List<Book> _books;      // 필터링을 거친 리스트
   List<Book> _allBooks;   // 서버로부터 다운받은 전체 리스트
   List<Book> _debugBooks;   // DEBUG (디버그용 필터링을 거친 리스트, 전체리스트는 books가 됨)
-  Connect c;
-  int mode;
-  int sort;
+  int _category;
   bool searchMode;
   bool favoritesMode;
   String searchStr = "";    // 검색 문자열
 
-  Debug d;
+  Debug d;  // DEBUG
 
   @override
   void init(BuildContext context, {void Function(Runnable) setState}) async {
     super.init(context, setState: setState);
     _books = List();
     _allBooks = List();
-    mode = 1;
+    _category = 1;
     searchMode = false;
 
     ////////////////////DEBUG///////////////////
@@ -41,13 +39,13 @@ class BookListController extends IController {
   List<Book> get books {
     if(_books != null) return _books;
     // 다운로드
-    // _allBooks = c.tryDownloadBooks();
+    //_allBooks = tryDownloadBooks();
     return _books ?? [];
   }
 
   // 카테고리 모드를 세팅합니다.
-  void setMode(int mode){
-    this.mode = mode;
+  void setCategory(int category){
+    this._category = category;
     setListBook();
   }
 
@@ -137,7 +135,7 @@ class BookListController extends IController {
 
     // 카테고리 모드
     for(var book in books){
-      if(mode == 0 || book.kind == mode) {
+      if(_category == 0 || book.kind == _category) {
         _debugBooks.add(book);
       }
     }

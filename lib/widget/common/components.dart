@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 /// 자주 사용하는 컴포넌트들을 정리합니다.
 
-///************ 자주 사용하는 텍스트 스타일 ************///
+/********************* 텍스트 디자인 *********************/
+// 기본 텍스트 스타일
 TextStyle defaultTextStyle({
   final double fontSize = 12.0,
   final int color = 0xFF000000
@@ -13,6 +14,7 @@ TextStyle defaultTextStyle({
     fontFamily: "Roboto"
 );
 
+// 제목 텍스트 스타일
 TextStyle headTextStyle({
   final double fontSize = 16.0,
   final int color = 0xFF000000
@@ -23,6 +25,7 @@ TextStyle headTextStyle({
     fontFamily: "Roboto"
 );
 
+// 대출 불가능 텍스트 스타일
 TextStyle impossibleLoanTextStyle({
   final double fontSize = 14.0,
 }) => TextStyle(
@@ -32,6 +35,7 @@ TextStyle impossibleLoanTextStyle({
     fontFamily: "Roboto"
 );
 
+// 대출 가능 텍스트 스타일
 TextStyle possibleLoanTextStyle({
   final double fontSize = 14.0,
 }) => TextStyle(
@@ -40,9 +44,9 @@ TextStyle possibleLoanTextStyle({
     fontWeight: FontWeight.w700,
     fontFamily: "Roboto"
 );
-///////////////////////////////////////////////////////////////////
 
-///************ 배경 디자인 ************///
+
+/// ******************* 배경 디자인 ********************* ///
 class CustomShapeClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
@@ -62,13 +66,12 @@ class CustomShapeClipper extends CustomClipper<Path> {
     path.close();
     return path;
   }
-///////////////////////////////////////////////////////////////////
-
   @override
   bool shouldReclip(CustomClipper oldClipper) => true;
 }
 
-// 탭바 동그라미 인디케이터
+/// ******************* 요소 디자인 ********************* ///
+// 탭바 사이클 인디케이터
 class CircleTabIndicator extends Decoration {
   final BoxPainter _painter;
 

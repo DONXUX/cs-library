@@ -23,6 +23,8 @@ dependencies:
     sdk: flutter
   flutter_bloc:
 
+  http: any
+
   material_design_icons_flutter: ^3.2.3895
 
   dot_tab_indicator: ^1.0.0
