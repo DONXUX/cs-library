@@ -2,6 +2,8 @@ import 'dart:io';
 import 'dart:convert';
 import 'package:path_provider/path_provider.dart';
 
+
+// 내부저장소와의 통신을 담당합니다.
 class FileInfo {
   File _jsonFile;
   Directory _dir;

@@ -102,7 +102,7 @@ class LoanWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Icon(Icons.book, size: 130, color: Colors.indigo),
+            Image.asset(R.drawable.sample, width:102, height: 142),
             Text("제목", style: headTextStyle()),
             Text("저자", style: defaultTextStyle()),
             Text("출판사", style: defaultTextStyle()),

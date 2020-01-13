@@ -58,6 +58,19 @@ class BookListWidget extends StatelessWidget {
     );
   }
 
+  Widget _EmptyListWidget() {
+    return Center(
+      child: Container(
+        child: Column(
+          children: <Widget>[
+            Icon(Icons.book),
+            Text("도서가 없습니다!")
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _BookListWidget() {
     return Container(
       child: ListView(
@@ -77,49 +90,38 @@ class BookListWidget extends StatelessWidget {
         Card(
             margin: EdgeInsets.all(8.0),
             elevation: 2.0,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                ListTile(
+            child: Container(
+              //height: 130,
+              padding: EdgeInsets.all(0.0),
+              child: ListTile(
+                //contentPadding: EdgeInsets.symmetric(horizontal: 0.0),
+                // 도서 표지
+                // TODO : 도서 표지 UI 구현
+                leading: Image.asset(R.drawable.sample),
 
-                  // 도서 표지
-                  // TODO : 도서 표지 UI 구현
-                  leading: Icon(Icons.book, size: 70.0),
-
-                  // 도서 제목
-                  title: Text(
-                    book.name,
-                    style: headTextStyle(),
-                  ),
-
-                  // 도서 저자, 출판사, 출판년도
-                  subtitle: Text(
-                      book.author + ", " + book.publisher + ", ${book.publish_year}"
-                  ),
+                // 도서 제목
+                title: Text(
+                  book.name,
+                  style: headTextStyle(),
                 ),
 
-                Container(
-                  margin: EdgeInsets.only(top: 24.0, bottom: 8.0, left: 16.0, right: 16.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: <Widget>[
-
-                      // 남은 도서 수
-                      Text(
-                          R.string.remaining_books + " : " + "${book.loan_possible_num}" + R.string.volume
-                      ),
-
-                      // 대출 가능 여부
-                      Text(
-                        book.loan_status ? R.string.possible_loan : R.string.impossible_loan,
-                        style: book.loan_status ? possibleLoanTextStyle() : impossibleLoanTextStyle(),
-                      ),
-                    ],
-                  ),
-                )
-              ],
+                // 도서 저자, 출판사, 출판년도
+                subtitle: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      book.author + ", " + book.publisher + ", ${book.publish_year}",
+                    ),
+                    Text(
+                      book.loan_status ? R.string.possible_loan : R.string.impossible_loan,
+                      style: book.loan_status ? possibleLoanTextStyle() : impossibleLoanTextStyle(),
+                    )
+                  ],
+                ),
+                isThreeLine: true,
+              ),
             ),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.0),
