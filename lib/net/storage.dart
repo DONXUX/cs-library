@@ -2,16 +2,16 @@ import 'dart:io';
 import 'dart:convert';
 import 'package:path_provider/path_provider.dart';
 
-
 // 내부저장소와의 통신을 담당합니다.
-class FileInfo {
+
+class Storage {
   File _jsonFile;
   Directory _dir;
   String _fileName;
   bool _fileExists;
   Map<String, dynamic> _fileContent;
 
-  FileInfo(String fileName){
+  Storage(String fileName){
     _fileName = fileName;
     _fileExists = false;
     _fileContent = Map();

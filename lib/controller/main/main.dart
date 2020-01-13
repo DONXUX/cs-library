@@ -2,7 +2,7 @@ import 'package:cs_book_loan/controller/lib.dart';
 import 'package:cs_book_loan/data/book.dart';
 import 'package:cs_book_loan/lib.dart';
 import 'package:cs_book_loan/net/client.dart';
-import 'package:cs_book_loan/net/file.dart';
+import 'package:cs_book_loan/net/storage.dart';
 import 'package:cs_book_loan/res/lib.dart';
 import 'package:cs_book_loan/res/widgets.dart';
 import 'package:cs_book_loan/widget/common/alert.dart';
@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 
 class MainController extends IController {
   String searchStr = "";
-  FileInfo file;
+  Storage file;
   List<Book> books;
 
   @override

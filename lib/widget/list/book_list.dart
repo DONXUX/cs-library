@@ -43,6 +43,7 @@ class BookListWidget extends StatelessWidget {
     _controller.setCategory = _category;
 
     return Scaffold(
+      appBar: _controller.favoritesMode ? null : AppBarWidget(),
       body: FutureBuilder(
         future: _controller.download().whenComplete((){ _controller.filteringBooks(); }),
           builder: (context, snapshot) {
@@ -53,26 +54,41 @@ class BookListWidget extends StatelessWidget {
                     child: CircularProgressIndicator()
                 );
               default:
-                return _BookListWidget();
+                return _controller.filterBooks.isEmpty ? _EmptyListWidget() : _BookListWidget();
             }
           }
       ),
     );
   }
 
+  // 도서 리스트 및 검색 리스트에 보여질 앱바입니다.
+  Widget AppBarWidget() {
+    return AppBar(
+      title: _controller.searchMode ? Text("검색결과") : Text(_controller.getModeString()),
+    );
+  }
+
+  // 도서 리스트가 없을시 나타나는 위젯입니다.
   Widget _EmptyListWidget() {
     return Center(
       child: Container(
+        alignment:  Alignment(0.0, 0.0),
         child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Icon(Icons.book),
-            Text("도서가 없습니다!")
+            Icon(Icons.book, size: 100.0, color: Colors.black38),
+            Text("도서가 없습니다!", style: TextStyle(
+              fontSize: 20.0,
+              color: Colors.black38,
+            ))
           ],
         ),
       ),
     );
   }
 
+  // 필터링된 도서 리스트 위젯입니다.
   Widget _BookListWidget() {
     return Container(
       child: ListView(
@@ -96,7 +112,6 @@ class BookListWidget extends StatelessWidget {
               //height: 130,
               padding: EdgeInsets.all(0.0),
               child: ListTile(
-                //contentPadding: EdgeInsets.symmetric(horizontal: 0.0),
                 // 도서 표지
                 // TODO : 도서 표지 UI 구현
                 leading: Image.asset(R.drawable.sample),

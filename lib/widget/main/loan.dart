@@ -106,14 +106,20 @@ class LoanWidget extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 8.0),
         child: Container(
           width: 120.0,
-          height: 225.0,
+          height: 260.0,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Image.asset(R.drawable.sample, width:102, height: 142),
-              Text(name, style: headTextStyle()),
+              Image.asset(R.drawable.sample, width:120, height: 170),
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0, bottom: 4.0, left: 6.0, right: 6.0),
+                child: Text(name, style: TextStyle(
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.w500,
+                )),
+              ),
               Text(author, style: defaultTextStyle()),
               Text(year.toString(), style: defaultTextStyle()),
             ],

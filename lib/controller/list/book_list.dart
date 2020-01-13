@@ -1,5 +1,6 @@
 import 'package:cs_book_loan/controller/lib.dart';
 import 'package:cs_book_loan/data/book.dart';
+import 'package:cs_book_loan/data/category.dart';
 import 'package:cs_book_loan/lib.dart';
 import 'package:cs_book_loan/net/client.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +48,6 @@ class BookListController extends IController {
     }
     return _filterBooks ?? [];
   }
-
 
   // 서버로부터 책을 다운로드 받습니다.
   Future<dynamic> download() async {
@@ -130,6 +130,15 @@ class BookListController extends IController {
         if (_category == 0 || book.category == _category) {
           _filterBooks.add(book);
         }
+    }
+  }
+
+  // AppBar에 띄워질 스트링입니다.
+  String getModeString() {
+    if(_searchMode) return "검색결과";
+    else {
+      if(category != 0) return CategoryList()[category - 1].category;
+      return CategoryList()[category].category;
     }
   }
 }
