@@ -1,5 +1,6 @@
 import 'package:cs_book_loan/controller/common/search.dart';
 import 'package:cs_book_loan/controller/main/main.dart';
+import 'package:cs_book_loan/data/book.dart';
 import 'package:cs_book_loan/res/lib.dart';
 import 'package:cs_book_loan/widget/common/components.dart';
 import 'package:cs_book_loan/widget/common/footer.dart';
@@ -35,6 +36,10 @@ class _MainWidgetState extends State<MainWidget> with SingleTickerProviderStateM
 
   @override
   Widget build(BuildContext context) {
+    final List<Book> args = ModalRoute
+        .of(context)
+        .settings
+        .arguments;
     _controller.init(context);
       return Scaffold(
         appBar: AppBar(
@@ -52,7 +57,7 @@ class _MainWidgetState extends State<MainWidget> with SingleTickerProviderStateM
           child: TabBarView(
             controller: ctr,
             children: <Widget>[
-              LoanWidget(),
+              LoanWidget(args),
               BookListWidget(),
             ],
           ),

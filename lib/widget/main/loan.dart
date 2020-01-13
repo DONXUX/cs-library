@@ -15,10 +15,16 @@ import 'package:http/http.dart' as http;
 
 class LoanWidget extends StatelessWidget {
   final LoanController _controller = LoanController();
+  List<Book> books;
+
+  LoanWidget(List<Book> books){
+    this.books = books;
+  }
 
   @override
   Widget build(BuildContext context) {
     _controller.init(context);
+    _controller.setBooks = books;
     return Scaffold(
         body: SingleChildScrollView(
           child: Container(
@@ -63,7 +69,7 @@ class LoanWidget extends StatelessWidget {
 
   // 추천도서 UI
   Widget _RecommenderBookWidget() => Column(
-      children: <Widget>[
+         children: <Widget>[
         Text(
             "추천 도서",
             style: TextStyle(
@@ -74,22 +80,23 @@ class LoanWidget extends StatelessWidget {
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
-            children: _RecommendedBookList(),
+            children: _getEndorseBooksWidget(),
           )
         )
       ],
     );
 
-  // 추천도서 리스트
-  List<Widget> _RecommendedBookList() => [
-      _RecommendedBookContent(),
-      _RecommendedBookContent(),
-      _RecommendedBookContent(),
-      _RecommendedBookContent(),
-    ];
+  // 추천도서 리스트를 UI로 변환합니다.
+  List<Widget> _getEndorseBooksWidget() {
+    List<Widget> list = List();
+    for(Book b in _controller.getEndorseBooks(books)) {
+      list.add(_RecommendedBookContent(b.name, b.author, b.publish_year));
+    }
+    return list;
+  }
 
   // 추천도서 컨텐츠 UI
-  Widget _RecommendedBookContent() => Card(
+  Widget _RecommendedBookContent(String name, String author, int year) => Card(
       elevation: 1.0,
       margin: EdgeInsets.only(top: 16.0, left: 4.0, right: 4.0, bottom: 4.0),
       shape: RoundedRectangleBorder(
@@ -97,16 +104,20 @@ class LoanWidget extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.only(bottom: 8.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Image.asset(R.drawable.sample, width:102, height: 142),
-            Text("제목", style: headTextStyle()),
-            Text("저자", style: defaultTextStyle()),
-            Text("출판사", style: defaultTextStyle()),
-          ],
+        child: Container(
+          width: 120.0,
+          height: 225.0,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Image.asset(R.drawable.sample, width:102, height: 142),
+              Text(name, style: headTextStyle()),
+              Text(author, style: defaultTextStyle()),
+              Text(year.toString(), style: defaultTextStyle()),
+            ],
+          ),
         ),
       ),
     );

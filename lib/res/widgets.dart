@@ -1,3 +1,4 @@
+import 'package:cs_book_loan/data/book.dart';
 import 'package:cs_book_loan/widget/intro/intro.dart';
 import 'package:cs_book_loan/widget/list/book_list.dart';
 import 'package:cs_book_loan/widget/main/loan.dart';
@@ -18,7 +19,7 @@ class Widgets extends Resource {
 Map<String, WidgetBuilder> makeRoutes(final Widgets w) => {
   w.intro: (BuildContext context) => IntroWidget(),
   w.main: (BuildContext context) => MainWidget(),
-  w.loan: (BuildContext context) => LoanWidget(),
+  w.loan: (BuildContext context) => LoanWidget(List<Book>()),
   w.list: (BuildContext context) => BookListWidget(),
 };
 

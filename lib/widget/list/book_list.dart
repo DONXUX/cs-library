@@ -17,12 +17,14 @@ class BookListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ListArguments args = ModalRoute
+    final Object objArgs = ModalRoute
         .of(context)
         .settings
         .arguments;
 
-    if(args != null) {
+    if(objArgs.runtimeType == ListArguments){
+      ListArguments args;
+      args = objArgs;
       _category = args.category;
       _searchMode = args.searchMode;
       _searchStr = args.str;

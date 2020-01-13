@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 class MainController extends IController {
   String searchStr = "";
   FileInfo file;
+  List<Book> books;
 
   @override
   void init(BuildContext context, {void Function(Runnable) setState}) async {

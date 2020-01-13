@@ -2,6 +2,8 @@ import 'package:cs_book_loan/lib.dart';
 import 'package:cs_book_loan/res/lib.dart';
 import 'package:flutter/material.dart';
 
+/// 알림창 관리를 담당합니다.
+
 void dialog(final BuildContext context, final String msgId,
     { Runnable onConfirm, Runnable onCancel }) {
   onCancel == null

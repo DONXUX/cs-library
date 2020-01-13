@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 /// 도서 플래그먼트 동작을 담당합니다.
 
 class LoanController extends IController {
-
+  List<Book> _books;
   /// 객체를 초기화합니다.
   @override
   void init(BuildContext context, {void Function(Runnable) setState}) async {
@@ -21,4 +21,11 @@ class LoanController extends IController {
   // 도서 리스트 화면으로 전환합니다.
   void convertListWidget(int category)
   => Navigator.pushNamed(context, R.widget.list, arguments: ListArguments(category, false, ""));
+
+  set setBooks(List<Book> books) => _books;
+
+  List<Book> getEndorseBooks(List<Book> books){
+    // TODO: 추천도서 구현(김학률)
+    return books;
+  }
 }

@@ -15,16 +15,16 @@ Future<List<Book>> tryDownloadBooks() async {
 
   /// JSON 파일을 도서 리스트 형식으로 변환합니다.
   for(var book in data){
-    Book b = Book(
-      id: int.parse(book['idx']),
-      name: book['name'],
-      author: book['author'],
-      publisher: book['publisher'],
-      publish_year: int.parse(book['year']),
-      category: int.parse(book['category']),
-      loan_possible_num: 3,
-      loan_status: book['borrowstate'] == 1 ? true : false,
-    );
+      Book b = Book(
+        id: int.parse(book['idx']),
+        name: book['name'],
+        author: book['author'],
+        publisher: book['publisher'],
+        publish_year: int.parse(book['year']),
+        category: int.parse(book['category']),
+        loan_possible_num: 3,
+        loan_status: book['borrowstate'] == '1' ? true : false,
+      );
     list.add(b);
   }
 
