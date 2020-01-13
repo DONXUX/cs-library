@@ -1,52 +1,59 @@
 import 'package:cs_book_loan/controller/lib.dart';
 import 'package:cs_book_loan/data/book.dart';
-import 'package:cs_book_loan/data/debug.dart';
 import 'package:cs_book_loan/lib.dart';
 import 'package:cs_book_loan/net/client.dart';
-import 'package:cs_book_loan/res/lib.dart';
 import 'package:flutter/material.dart';
 
 /// 도서 리스트 동작을 담당합니다.
 
 class BookListController extends IController {
-  List<Book> _books;      // 필터링을 거친 리스트
-  List<Book> _allBooks;   // 서버로부터 다운받은 전체 리스트
-  List<Book> _debugBooks;   // DEBUG (디버그용 필터링을 거친 리스트, 전체리스트는 books가 됨)
+  List<Book> _filterBooks;      // 필터링을 거친 리스트
+  List<Book> _books;            // 서버로부터 다운받은 전체 리스트
   int _category;
-  bool searchMode;
-  bool favoritesMode;
-  String searchStr = "";    // 검색 문자열
-
-  Debug d;  // DEBUG
+  bool _searchMode;
+  bool _favoritesMode;
+  String searchStr = "";        // 검색 문자열
 
   @override
-  void init(BuildContext context, {void Function(Runnable) setState}) async {
+  Future<void> init(BuildContext context, {void Function(Runnable) setState}) async {
     super.init(context, setState: setState);
-    _books = List();
-    _allBooks = List();
+    _filterBooks = List();
     _category = 1;
-    searchMode = false;
-
-    ////////////////////DEBUG///////////////////
-    _debugBooks = List();
-    d = Debug();
-    _books = d.debugBook;
-    /////////////////////////////////////////////
+    _searchMode = false;
   }
 
+  // setter
+  set setCategory(int category) => _category = category;
+  set setSearchMode(bool searchMode) => _searchMode = searchMode;
+  set setFavoritesMode(bool favoritesMode) => _favoritesMode = favoritesMode;
+
+  // getter
+  get category => _category;
+  get searchMode => _searchMode;
+  get favoritesMode => _favoritesMode;
+
   // 도서리스트를 반환합니다.
-  // 도서리스트가 비어있다면 다운로드를 시도합니다.
   List<Book> get books {
-    if(_books != null) return _books;
-    // 다운로드
-    //_allBooks = tryDownloadBooks();
+    if(_books != null) {
+      return _books;
+    }
     return _books ?? [];
   }
 
-  // 카테고리 모드를 세팅합니다.
-  void setCategory(int category){
-    this._category = category;
-    setListBook();
+  // 필터링을 거친 도서리스트를 반환합니다.
+  List<Book> get filterBooks {
+    if(_filterBooks != null) {
+      return _filterBooks;
+    }
+    return _filterBooks ?? [];
+  }
+
+
+  // 서버로부터 책을 다운로드 받습니다.
+  Future<dynamic> download() async {
+    print("다운로드 진행...");
+    _books = await tryDownloadBooks();
+    print("다운로드 완료!");
   }
 
   /// 책을 검색합니다.
@@ -54,14 +61,8 @@ class BookListController extends IController {
   /// 검색 모드 2 : 도서 이름 검색
   /// 검색 모드 3 : 저자 검색
   /// 검색 모드 4 : 출판사 검색
-  /// 서버로부터 도서 리스트를 다운로드한 후, 그 리스트를 검색합니다.
   List<Book> searchBook(int mode) {
-    // 다운로드
-    ///////////////요거는 DB 연동 후 쓰일예정/////////////////
-    // _allBooks = c.tryDownloadBooks();
-    /////////////////////////////////////////////////////////////
 
-    // TODO : 검색 기능 구현(김학률)
     switch(mode){
       case 1:
         return searchBookAll();
@@ -80,19 +81,14 @@ class BookListController extends IController {
   }
 
   List<Book> searchBookAll(){
-    // TODO : 전체 검색 기능 구현(김학률)
-    // 이름, 저자, 출판사 전체 검색하여 리스트로 저장한다.
-    // DB 연동되기전엔 books가 전체 리스트이다.
-    // searchStr 문자열로
-    // books 리스트를 필터링 하여야함.
-    List<Book> filterBooks = List();
-    for(Book book in books){
+    List<Book> searchBooks = List();
+    for(Book book in _books){
       if(book.name.contains(searchStr) || book.author.contains(searchStr) || book.publisher.contains(searchStr)) {
-        filterBooks.add(book);
+        searchBooks.add(book);
       }
     }
-    
-    return filterBooks;
+
+    return searchBooks;
   }
   List<Book> searchBookName(){
     // TODO : 이름 검색 기능 구현
@@ -104,25 +100,20 @@ class BookListController extends IController {
     // TODO : 출판사 검색 기능 구현
   }
 
-  /////////////////////////DEBUG///////////////////////////
-  List<Book> get debugBooks {
-    if(_debugBooks != null) return _debugBooks;
-    return _debugBooks ?? [];
-  }
+  // 리스트를 필터링합니다.
+  Future<void> filteringBooks() async {
+    _filterBooks.clear();
 
-  void setListBook(){
-    _debugBooks.clear();
     // 검색 모드
-    print("디버깅 안 : " + searchStr);
-
     if(searchMode){
       // 검색
       if(searchStr != "") {
-        _books = searchBook(1);
+        _filterBooks = searchBook(1);
       }
-      print(_books);
-      for(var book in books) {
-        _debugBooks.add(book);
+      else {
+        for (var book in _books) {
+          _filterBooks.add(book);
+        }
       }
       return;
     }
@@ -131,17 +122,14 @@ class BookListController extends IController {
     if(favoritesMode){
       print("즐겨찾기");
       // TODO : 즐겨찾기 모드 구현
+      return;
     }
 
     // 카테고리 모드
-    for(var book in books){
-      if(_category == 0 || book.kind == _category) {
-        _debugBooks.add(book);
-      }
+    for(var book in _books) {
+        if (_category == 0 || book.category == _category) {
+          _filterBooks.add(book);
+        }
     }
   }
-  /////////////////////////////////////////////////////////
-
-
-
 }

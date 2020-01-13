@@ -2,4 +2,5 @@
 
 const String PROTOCOL = 'http';
 const String HOST = '203.255.3.225';
-const int PORT = 3306;
+const String PORT = "8080";
+const String SERVER_FILE = "searchBookAll.php";

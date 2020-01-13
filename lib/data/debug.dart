@@ -13,7 +13,7 @@ class Debug {
         author: "김학률",
         publisher: "구석방",
         publish_year: 2020,
-        kind: 2,
+        category: 2,
         loan_possible_num: 0,
         loan_status: false
     );
@@ -23,7 +23,7 @@ class Debug {
         author: "조재준",
         publisher: "실습조교실",
         publish_year: 2019,
-        kind: 2,
+        category: 2,
         loan_possible_num: 1,
         loan_status: true
     );
@@ -33,7 +33,7 @@ class Debug {
         author: "권영민",
         publisher: "구석방",
         publish_year: 2018,
-        kind: 3,
+        category: 3,
         loan_possible_num: 0,
         loan_status: false
     );
@@ -43,7 +43,7 @@ class Debug {
         author: "이동욱",
         publisher: "구석방",
         publish_year: 2020,
-        kind: 1,
+        category: 1,
         loan_possible_num: 0,
         loan_status: false
     );
@@ -53,7 +53,7 @@ class Debug {
         author: "권땡땡",
         publisher: "구석방",
         publish_year: 2018,
-        kind: 4,
+        category: 4,
         loan_possible_num: 11,
         loan_status: true
     );
@@ -63,7 +63,7 @@ class Debug {
         author: "mother",
         publisher: "corner",
         publish_year: 2018,
-        kind: 4,
+        category: 4,
         loan_possible_num: 4,
         loan_status: true
     );

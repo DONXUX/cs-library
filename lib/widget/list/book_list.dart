@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 
 class BookListWidget extends StatelessWidget {
   final BookListController _controller = BookListController();
-  int _mode;
+  int _category;
   bool _searchMode;
   bool _favoritesMode = false;
   String _searchStr;
@@ -21,34 +21,49 @@ class BookListWidget extends StatelessWidget {
         .of(context)
         .settings
         .arguments;
-    print("args 디버깅" + args.toString());
 
     if(args != null) {
-      _mode = args.category;
+      _category = args.category;
       _searchMode = args.searchMode;
       _searchStr = args.str;
     }
     else{
-      _mode = 0;
+      _category = 0;
       _searchMode = false;
       _searchStr = "";
       _favoritesMode = true;
     }
-    print("디버깅 : " + _searchStr);
 
     _controller.init(context);
-    _controller.searchMode = _searchMode;
+    _controller.setSearchMode = _searchMode;
     _controller.searchStr = _searchStr;
-    _controller.favoritesMode = _favoritesMode;
-    _controller.setCategory(_mode);
+    _controller.setFavoritesMode = _favoritesMode;
+    _controller.setCategory = _category;
 
     return Scaffold(
-      body: Container(
-        child: ListView(
-          children: _controller.debugBooks
-              .map(_bookContents)
-              .toList(),
-        ),
+      body: FutureBuilder(
+        future: _controller.download().whenComplete((){ _controller.filteringBooks(); }),
+          builder: (context, snapshot) {
+            switch(snapshot.connectionState){
+              case ConnectionState.none:
+              case ConnectionState.waiting:
+                return Center(
+                    child: CircularProgressIndicator()
+                );
+              default:
+                return _BookListWidget();
+            }
+          }
+      ),
+    );
+  }
+
+  Widget _BookListWidget() {
+    return Container(
+      child: ListView(
+        children: _controller.filterBooks
+            .map(_bookContents)
+            .toList(),
       )
     );
   }

@@ -1,21 +1,48 @@
 import 'dart:convert';
 
 import 'package:cs_book_loan/data/book.dart';
+import 'package:cs_book_loan/net/lib.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 /// 서버와 통신을 담당합니다.
 
-/// 서버로부터 도서 JSON 데이터를 가져옵니다.
-List<Book> tryDownloadBooks() {
-  // TODO : 서버로부터 도서 JSON 다운로드 구현
+/// 서버로부터 도서 JSON 데이터를 가져와 리스트 형식으로 변환합니다.
+Future<List<Book>> tryDownloadBooks() async {
+  /// 서버로부터 도서 JSON 파일을 가져옵니다.
+  List<Book> list = List();
+  var data;
+  data = await onLoadBooks();
 
+  /// JSON 파일을 도서 리스트 형식으로 변환합니다.
+  for(var book in data){
+    Book b = Book(
+      id: int.parse(book['idx']),
+      name: book['name'],
+      author: book['author'],
+      publisher: book['publisher'],
+      publish_year: int.parse(book['year']),
+      category: int.parse(book['category']),
+      loan_possible_num: 3,
+      loan_status: book['borrowstate'] == 1 ? true : false,
+    );
+    list.add(b);
+  }
+
+  list ??= [];
+  return list;
 }
 
-Future getData() async {
+Future<List<dynamic>> onLoadBooks() async {
   var data;
-  final response = await http.get('http://203.255.3.225:8080/searchBookAll.php');
+  final response = await http.get(_composeURI(SERVER_FILE));
 
   if(response.statusCode == 200) {
     data = json.decode(response.body);
   }
-  print("json data" + data.toString());
+  data ??= {};
+  return data;
+}
+
+String _composeURI(final String uri){
+  return '$PROTOCOL://$HOST:$PORT/$uri';
 }

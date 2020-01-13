@@ -9,7 +9,7 @@ class Book {
   final String author;
   final String publisher;
   final int publish_year;
-  final int kind;
+  final int category;
   final int loan_possible_num;
   final bool loan_status;
 
@@ -19,7 +19,7 @@ class Book {
     @required this.author,
     @required this.publisher,
     @required this.publish_year,
-    @required this.kind,
+    @required this.category,
     @required this.loan_possible_num,
     @required this.loan_status,
     }): assert(id != null),
@@ -27,7 +27,7 @@ class Book {
         assert(author != null),
         assert(publisher != null),
         assert(publish_year != null),
-        assert(kind != null),
+        assert(category != null),
         assert(loan_possible_num != null),
         assert(loan_status != null);
 }
