@@ -10,7 +10,6 @@ class R {
   static S        _string;
   static Drawable _drawable;
   static Widgets  _widget;
-  static Storage _stroage;
 
   static S        get string    => _string;
   static Drawable get drawable  => _drawable;
@@ -28,8 +27,4 @@ class R {
     _string = await S.delegate.load(Locale('ko', 'KR'));
   }
 
-  /// 권한을 요청합니다.
-  static Future<bool> requestPermission() async {
-    //return _stor.requestPermission();
-  }
 }
