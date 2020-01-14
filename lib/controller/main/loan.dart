@@ -7,6 +7,7 @@ import 'package:cs_book_loan/res/lib.dart';
 import 'package:cs_book_loan/res/widgets.dart';
 import 'package:cs_book_loan/widget/main/loan.dart';
 import 'package:flutter/material.dart';
+import "dart:math";
 
 /// 도서 플래그먼트 동작을 담당합니다.
 
@@ -26,6 +27,15 @@ class LoanController extends IController {
 
   List<Book> getEndorseBooks(List<Book> books){
     // TODO: 추천도서 구현(김학률)
-    return books;
+    List<Book> recommed_books = List();
+
+    books.shuffle();
+
+    for(var i = 0; i < 4; i++) {
+      Book element = books[i];
+      recommed_books.add(element);
+    }
+
+    return recommed_books;
   }
 }
