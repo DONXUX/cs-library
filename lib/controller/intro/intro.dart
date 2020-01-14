@@ -26,4 +26,5 @@ class IntroController extends IController {
   /// 도서대출 현황 화면으로 이동합니다.
   void _convertMainWidget(List<Book> books)
   => Navigator.popAndPushNamed(context, R.widget.main, arguments: books);
+
 }

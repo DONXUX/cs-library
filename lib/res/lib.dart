@@ -1,4 +1,5 @@
 import 'package:cs_book_loan/generated/i18n.dart';
+import 'package:cs_book_loan/net/storage.dart';
 import 'package:cs_book_loan/res/drawable.dart';
 import 'package:cs_book_loan/res/widgets.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ class R {
   static S        _string;
   static Drawable _drawable;
   static Widgets  _widget;
+  static Storage _stroage;
 
   static S        get string    => _string;
   static Drawable get drawable  => _drawable;
@@ -24,5 +26,10 @@ class R {
   static void initString(BuildContext context) async {
     // _string = await S.delegate.load(Localizations.localeOf(context));
     _string = await S.delegate.load(Locale('ko', 'KR'));
+  }
+
+  /// 권한을 요청합니다.
+  static Future<bool> requestPermission() async {
+    //return _stor.requestPermission();
   }
 }
