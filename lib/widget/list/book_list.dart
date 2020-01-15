@@ -138,6 +138,7 @@ class BookListWidget extends StatelessWidget {
                   ],
                 ),
                 isThreeLine: true,
+                trailing: Icon(Icons.grade, color: Colors.amber),
               ),
             ),
             shape: RoundedRectangleBorder(

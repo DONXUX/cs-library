@@ -26,11 +26,8 @@ class LoanController extends IController {
   set setBooks(List<Book> books) => _books;
 
   List<Book> getEndorseBooks(List<Book> books){
-    // TODO: 추천도서 구현(김학률)
     List<Book> recommed_books = List();
-
     books.shuffle();
-
     for(var i = 0; i < 4; i++) {
       Book element = books[i];
       recommed_books.add(element);

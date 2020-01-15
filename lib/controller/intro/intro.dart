@@ -5,6 +5,7 @@ import 'package:cs_book_loan/net/client.dart';
 import 'package:cs_book_loan/res/lib.dart';
 import 'package:cs_book_loan/widget/main/loan.dart';
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 /// 인트로 화면의 동작을 담당합니다.
 
@@ -20,6 +21,7 @@ class IntroController extends IController {
       books = await tryDownloadBooks();
       print("인트로 도서 다운완료!");
       _convertMainWidget(books);
+      _permission();
     });
   }
 
@@ -27,4 +29,10 @@ class IntroController extends IController {
   void _convertMainWidget(List<Book> books)
   => Navigator.popAndPushNamed(context, R.widget.main, arguments: books);
 
+  /// 저장공간 접근 권한을 요청합니다.
+  void _permission() async {
+    Map<PermissionGroup, PermissionStatus> permissions
+    = await PermissionHandler().requestPermissions([PermissionGroup.storage]);
+    print('접근권한 : $permissions');
+  }
 }

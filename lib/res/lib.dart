@@ -10,6 +10,7 @@ class R {
   static S        _string;
   static Drawable _drawable;
   static Widgets  _widget;
+  //static Storage _storage;
 
   static S        get string    => _string;
   static Drawable get drawable  => _drawable;
@@ -19,6 +20,7 @@ class R {
   static void init() {
     _drawable = Drawable();
     _widget = Widgets();
+    //_storage = Storage("favorite.txt");
   }
 
   /// 문자열 자원을 초기화합니다.
