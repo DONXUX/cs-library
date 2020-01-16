@@ -22,6 +22,7 @@ class _MainWidgetState extends State<MainWidget> with SingleTickerProviderStateM
   final MainController _controller = MainController();
   TabController ctr;
   SearchController _searchController = SearchController();
+  Storage s;
 
   @override
   void initState(){
@@ -37,8 +38,7 @@ class _MainWidgetState extends State<MainWidget> with SingleTickerProviderStateM
 
   @override
   Widget build(BuildContext context) {
-    // s = Storage("test.txt");
-    //s.writeToFile("key","value");
+
     final List<Book> args = ModalRoute
         .of(context)
         .settings

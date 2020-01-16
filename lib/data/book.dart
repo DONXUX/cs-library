@@ -12,8 +12,9 @@ class Book {
   final int category;
   final int loan_possible_num;
   final bool loan_status;
+  bool favorite;
 
-  const Book({
+  Book({
     @required this.id,
     @required this.name,
     @required this.author,

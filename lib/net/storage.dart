@@ -1,50 +1,82 @@
 import 'dart:io';
 import 'dart:convert';
+import 'package:cs_book_loan/data/book.dart';
+import 'package:cs_book_loan/net/lib.dart';
 import 'package:path_provider/path_provider.dart';
 
 // 내부저장소와의 통신을 담당합니다.
 
 class Storage {
-  File _jsonFile;
-  Directory _dir;
-  String _fileName;
-  bool _fileExists;
-  Map<String, dynamic> _fileContent;
+  String _name;
 
-  Storage(String fileName){
-    _fileName = fileName;
-    _fileExists = false;
-    _fileContent = Map();
-    getApplicationDocumentsDirectory().then((Directory directory){
-      print("디버깅 : " + directory.path);
-      _dir = Directory(directory.path);
-      _jsonFile = new File(_dir.path + "/" + fileName);
-      _fileExists = _jsonFile.existsSync();
-      if(_fileExists)
-        _fileContent = json.decode(_jsonFile.readAsStringSync());
-    });
+  Storage(String name) {
+    _name = name;
   }
 
-  void createFile(Map<String, String> content){
-    print("파일이 생성되었습니다!");
-    File file = new File(_dir.path + "/" + _fileName);
-    file.createSync();
-    _fileExists = true;
-    file.writeAsStringSync(json.encode(content));
+  String get name => _name;
+
+  Future<String> get _localPath async {
+    final directory = await getApplicationDocumentsDirectory();
+    return directory.path;
   }
 
-  void writeToFile(String key, String value){
-    print("파일을 기록합니다.");
-    Map<String, dynamic> content = {key: value};
-    if(_fileExists) {
-      Map<String, dynamic> jsonFileContent = json.decode(_jsonFile.readAsStringSync());
-      jsonFileContent.addAll(content);
-      _jsonFile.writeAsStringSync(json.encode(jsonFileContent));
-    } else {
-      print("파일이 존재하지 않습니다. 파일을 생성합니다...");
-      createFile(content);
+  Future<File> get _localFile async {
+    final path = await _localPath;
+    return File('$path/' + name);
+  }
+
+  // JSON 파일을 기록합니다.
+  Future<bool> writeFile(Book content) async {
+    List<int> books_id_list = List();
+    List<int> books_id_list_add = List();
+    final file = await _localFile;
+    books_id_list = await readFile();
+    for(int i in books_id_list) {
+      if(i == content.id)
+        return false;
     }
-    _fileContent = json.decode(_jsonFile.readAsStringSync());
-    print(_fileContent);
+
+    books_id_list_add = List<int>.from(books_id_list);
+    books_id_list_add.add(content.id);
+    print("books_id_list : $books_id_list_add");
+
+    await renewFile(books_id_list_add);
+    return true;
+  }
+
+  // JSON 파일을 가져와 해석합니다.
+  Future<List<int>> readFile() async {
+    List<int> contents;
+    try {
+      final file = await _localFile;
+      contents = utf8.encode(file.readAsStringSync());
+      print("컨텐츠 : $contents");
+
+      return contents;
+    } catch (e) {
+      print("데이터가 존재하지 않습니다. 파일을 생성합니다...");
+      print("에러내용 : $e");
+      return [];
+    }
+  }
+
+  // JSON 파일을 삭제합니다.
+  Future<List<Book>> delAllFile() async {
+    final file = await _localFile;
+    file.deleteSync(recursive: true);
+  }
+
+  // JSON 파일을 갱신합니다.
+  Future<void> renewFile(List<int> books_id) async {
+    final file = await _localFile;
+
+    // 파일을 갱신합니다.
+    try {
+      file.writeAsStringSync(utf8.decode(books_id));
+      print(file.path + "에 '$name' 파일이 갱신되었습니다!");
+    } catch(e) {
+      print("오류 : 파일이 갱신되지 않았습니다.");
+      print("에러내용 : $e");
+    }
   }
 }

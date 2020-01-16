@@ -24,7 +24,6 @@ class S implements WidgetsLocalizations {
   String get app_name => "CS Library";
   String get book => "Book";
   String get book_list => "Book list";
-  String get commin_alert_field_close_app => "Do you want to close CS Library?";
   String get common_alert_cancel => "Cancel";
   String get common_alert_choose_no => "No";
   String get common_alert_choose_yes => "Yes";
@@ -60,8 +59,6 @@ class $ko_KR extends S {
   String get common_alert_title => "알림";
   @override
   String get common_alert_field_close_app => "CS Library 을 종료하시겠습니까?";
-  @override
-  String get commin_alert_field_close_app => "CS 도서 대출 서비스를 종료하시겠습니까?";
   @override
   String get common_alert_choose_yes => "예";
   @override

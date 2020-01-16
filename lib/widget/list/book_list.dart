@@ -8,11 +8,20 @@ import 'package:flutter/material.dart';
 
 /// 도서 리스트 UI를 관리합니다.
 
-class BookListWidget extends StatelessWidget {
+class BookListWidget extends StatefulWidget {
+  @override
+  _BookListWidgetState createState() => _BookListWidgetState();
+}
+
+class _BookListWidgetState extends State<BookListWidget> {
   final BookListController _controller = BookListController();
+
   int _category;
+
   bool _searchMode;
+
   bool _favoritesMode = false;
+
   String _searchStr;
 
   @override
@@ -61,14 +70,12 @@ class BookListWidget extends StatelessWidget {
     );
   }
 
-  // 도서 리스트 및 검색 리스트에 보여질 앱바입니다.
   Widget AppBarWidget() {
     return AppBar(
       title: _controller.searchMode ? Text("검색결과") : Text(_controller.getModeString()),
     );
   }
 
-  // 도서 리스트가 없을시 나타나는 위젯입니다.
   Widget _EmptyListWidget() {
     return Center(
       child: Container(
@@ -88,7 +95,6 @@ class BookListWidget extends StatelessWidget {
     );
   }
 
-  // 필터링된 도서 리스트 위젯입니다.
   Widget _BookListWidget() {
     return Container(
       child: ListView(
@@ -138,7 +144,15 @@ class BookListWidget extends StatelessWidget {
                   ],
                 ),
                 isThreeLine: true,
-                trailing: Icon(Icons.grade, color: Colors.amber),
+                trailing: IconButton(
+                    icon: Icon(Icons.grade),
+                    color: book.favorite ? Colors.amber : Colors.black38,
+                  onPressed: (){
+                      book.favorite ? _controller.delFavoriteBooks(book) : _controller.addFavoriteBooks(book);
+                      setState((){}
+                      );
+                  },
+                ),
               ),
             ),
             shape: RoundedRectangleBorder(

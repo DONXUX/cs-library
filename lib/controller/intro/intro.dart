@@ -2,6 +2,7 @@ import 'package:cs_book_loan/controller/lib.dart';
 import 'package:cs_book_loan/data/book.dart';
 import 'package:cs_book_loan/lib.dart';
 import 'package:cs_book_loan/net/client.dart';
+import 'package:cs_book_loan/net/storage.dart';
 import 'package:cs_book_loan/res/lib.dart';
 import 'package:cs_book_loan/widget/main/loan.dart';
 import 'package:flutter/material.dart';

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
+/// 카테고리 데이터를 관리합니다.
+
 class Category {
   Icon _icon;
   String _category;

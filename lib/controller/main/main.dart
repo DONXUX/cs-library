@@ -1,5 +1,6 @@
 import 'package:cs_book_loan/controller/lib.dart';
 import 'package:cs_book_loan/data/book.dart';
+import 'package:cs_book_loan/data/debug.dart';
 import 'package:cs_book_loan/lib.dart';
 import 'package:cs_book_loan/net/client.dart';
 import 'package:cs_book_loan/net/storage.dart';
@@ -12,12 +13,14 @@ import 'package:flutter/material.dart';
 
 class MainController extends IController {
   String searchStr = "";
-  Storage file;
   List<Book> books;
+  List<Book> favorite_books;
 
+  Debug d = Debug();
   @override
   void init(BuildContext context, {void Function(Runnable) setState}) async {
     super.init(context, setState: setState);
+    favorite_books = List();
   }
 
   // 검색 텍스트 필드로부터 Input 데이터를 가져옵니다.
