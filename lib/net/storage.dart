@@ -25,7 +25,7 @@ class Storage {
     return File('$path/' + name);
   }
 
-  // JSON 파일을 기록합니다.
+  // 파일을 기록합니다.
   Future<bool> writeFile(Book content) async {
     List<int> books_id_list = List();
     List<int> books_id_list_add = List();
@@ -38,19 +38,17 @@ class Storage {
 
     books_id_list_add = List<int>.from(books_id_list);
     books_id_list_add.add(content.id);
-    print("books_id_list : $books_id_list_add");
 
     await renewFile(books_id_list_add);
     return true;
   }
 
-  // JSON 파일을 가져와 해석합니다.
+  // 파일을 가져와 해석합니다.
   Future<List<int>> readFile() async {
     List<int> contents;
     try {
       final file = await _localFile;
       contents = utf8.encode(file.readAsStringSync());
-      print("컨텐츠 : $contents");
 
       return contents;
     } catch (e) {
@@ -60,17 +58,16 @@ class Storage {
     }
   }
 
-  // JSON 파일을 삭제합니다.
+  // 파일을 삭제합니다.
   Future<List<Book>> delAllFile() async {
     final file = await _localFile;
     file.deleteSync(recursive: true);
   }
 
-  // JSON 파일을 갱신합니다.
+  // 파일을 갱신합니다.
   Future<void> renewFile(List<int> books_id) async {
     final file = await _localFile;
 
-    // 파일을 갱신합니다.
     try {
       file.writeAsStringSync(utf8.decode(books_id));
       print(file.path + "에 '$name' 파일이 갱신되었습니다!");

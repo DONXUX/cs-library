@@ -90,13 +90,13 @@ class LoanWidget extends StatelessWidget {
   List<Widget> _getEndorseBooksWidget() {
     List<Widget> list = List();
     for(Book b in _controller.getEndorseBooks(books)) {
-      list.add(_RecommendedBookContent(b.name, b.author, b.publish_year));
+      list.add(_RecommendedBookContent(b.name, b.author, b.publisher));
     }
     return list;
   }
 
   // 추천도서 컨텐츠 UI
-  Widget _RecommendedBookContent(String name, String author, int year) => Card(
+  Widget _RecommendedBookContent(String name, String author, String publisher) => Card(
       elevation: 1.0,
       margin: EdgeInsets.only(top: 16.0, left: 4.0, right: 4.0, bottom: 4.0),
       shape: RoundedRectangleBorder(
@@ -121,7 +121,7 @@ class LoanWidget extends StatelessWidget {
                 )),
               ),
               Text(author, style: defaultTextStyle()),
-              Text(year.toString(), style: defaultTextStyle()),
+              Text(publisher, style: defaultTextStyle()),
             ],
           ),
         ),

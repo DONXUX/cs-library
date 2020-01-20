@@ -34,6 +34,12 @@ void _dialogSimple(final BuildContext context, final String msg,
 );
 
 /// 종료 알림창을 띄웁니다.
+Future<bool> dialogNetworkError(final BuildContext context) async {
+  _dialogAsk(context, "네트워크 오류", onConfirm: exit);
+  return false;
+}
+
+/// 종료 알림창을 띄웁니다.
 Future<bool> dialogExit(final BuildContext context) async {
   _dialogAsk(context, R.string.common_alert_field_close_app, onConfirm: exit);
   return false;
@@ -68,7 +74,6 @@ void _dialogAsk(final BuildContext context, final String msg,
     ),
   ),
 );
-
 
 /// 알림창에서 뒤로가기 버튼을 누른 경우의 이벤트입니다.
 /// 정의한 취소 메소드를 수행하고 알림창을 종료합니다.

@@ -63,7 +63,13 @@ class BookListController extends IController {
     await getFavoriteBooks();
     _books = await tryDownloadBooks();
     for(int id in _favorite_books_id){
-      _books[id - 1].favorite = true;
+      for(Book b in _books){
+        if(b.id == id) {
+          b.favorite = true;
+          break;
+        }
+      }
+      //_books[id - 1].favorite = true;
     }
     print("다운로드 완료!");
   }
@@ -135,7 +141,12 @@ class BookListController extends IController {
     if(favoritesMode){
       print("즐겨찾기");
       for(int idx in _favorite_books_id){
-        _filterBooks.add(_books[idx - 1]);
+        for(Book b in _books){
+          if(b.id == idx) {
+            _filterBooks.add(b);
+            break;
+          }
+        }
       }
       return;
     }
@@ -150,14 +161,12 @@ class BookListController extends IController {
 
   // 즐겨찾기에 해당 도서를 추가합니다.
   void addFavoriteBooks(Book book) {
-    print("추가");
     setFavoriteBooks(book);
     book.favorite = true;
   }
 
   // 즐겨찾기 파일을 제거합니다.
   Future<void> delFavoriteBooks(Book book) async {
-    print("삭제");
       Storage file = Storage("favorite_ids.txt");
       _favorite_books_id = await file.readFile();
       List<int> renewList = List<int>.from(_favorite_books_id);

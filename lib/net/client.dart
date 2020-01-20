@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:cs_book_loan/data/book.dart';
 import 'package:cs_book_loan/net/lib.dart';
@@ -12,6 +14,7 @@ Future<List<Book>> tryDownloadBooks() async {
   List<Book> list = List();
   var data;
   data = await onLoadBooks();
+  data ??= [];
 
   /// JSON 파일을 도서 리스트 형식으로 변환합니다.
   list = JSONToBook(data);
@@ -22,8 +25,9 @@ Future<List<Book>> tryDownloadBooks() async {
 
 Future<List<dynamic>> onLoadBooks() async {
   var data;
-  final response = await http.get(_composeURI(SERVER_FILE));
+  var response;
 
+  response = await http.get(_composeURI(SERVER_FILE));
   if(response.statusCode == 200) {
     data = json.decode(response.body);
   }

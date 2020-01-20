@@ -19,11 +19,11 @@ class LoanController extends IController {
     super.init(context, setState: setState);
   }
 
+  set setBooks(List<Book> books) => _books;
+
   // 도서 리스트 화면으로 전환합니다.
   void convertListWidget(int category)
   => Navigator.pushNamed(context, R.widget.list, arguments: ListArguments(category, false, ""));
-
-  set setBooks(List<Book> books) => _books;
 
   List<Book> getEndorseBooks(List<Book> books){
     List<Book> recommed_books = List();

@@ -17,11 +17,8 @@ class _BookListWidgetState extends State<BookListWidget> {
   final BookListController _controller = BookListController();
 
   int _category;
-
   bool _searchMode;
-
   bool _favoritesMode = false;
-
   String _searchStr;
 
   @override
@@ -149,8 +146,7 @@ class _BookListWidgetState extends State<BookListWidget> {
                     color: book.favorite ? Colors.amber : Colors.black38,
                   onPressed: (){
                       book.favorite ? _controller.delFavoriteBooks(book) : _controller.addFavoriteBooks(book);
-                      setState((){}
-                      );
+                      setState((){});
                   },
                 ),
               ),

@@ -8,7 +8,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class IntroWidget extends Bootstrapper {
   final IntroController _controller = IntroController();
-
   @override
   Widget buildWidget(BuildContext context) {
     _controller.init(context);

@@ -4,6 +4,7 @@ import 'package:cs_book_loan/lib.dart';
 import 'package:cs_book_loan/net/client.dart';
 import 'package:cs_book_loan/net/storage.dart';
 import 'package:cs_book_loan/res/lib.dart';
+import 'package:cs_book_loan/widget/common/alert.dart';
 import 'package:cs_book_loan/widget/main/loan.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -19,7 +20,7 @@ class IntroController extends IController {
     List<Book> books;
     Future.delayed(const Duration(milliseconds: 1500), () async {
       print("인트로 도서 다운로드...");
-      books = await tryDownloadBooks();
+      books = await tryDownloadBooks().timeout(const Duration(seconds: 5));
       print("인트로 도서 다운완료!");
       _convertMainWidget(books);
       _permission();
@@ -35,5 +36,9 @@ class IntroController extends IController {
     Map<PermissionGroup, PermissionStatus> permissions
     = await PermissionHandler().requestPermissions([PermissionGroup.storage]);
     print('접근권한 : $permissions');
+  }
+
+  Future<bool> networkErrorDialog() async {
+    return dialogNetworkError(context);
   }
 }
