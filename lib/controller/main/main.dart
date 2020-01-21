@@ -16,7 +16,6 @@ class MainController extends IController {
   List<Book> books;
   List<Book> favorite_books;
 
-  Debug d = Debug();
   @override
   void init(BuildContext context, {void Function(Runnable) setState}) async {
     super.init(context, setState: setState);

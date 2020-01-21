@@ -67,67 +67,6 @@ class LoanWidget extends StatelessWidget {
     )
   );
 
-  // 추천도서 UI
-  Widget _RecommenderBookWidget() => Column(
-         children: <Widget>[
-        Text(
-            "추천 도서",
-            style: TextStyle(
-              fontSize: 20.0,
-              fontWeight: FontWeight.w700,
-            ),
-        ),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: _getEndorseBooksWidget(),
-          )
-        )
-      ],
-    );
-
-  // 추천도서 리스트를 UI로 변환합니다.
-  List<Widget> _getEndorseBooksWidget() {
-    List<Widget> list = List();
-    for(Book b in _controller.getEndorseBooks(books)) {
-      list.add(_RecommendedBookContent(b.name, b.author, b.publisher));
-    }
-    return list;
-  }
-
-  // 추천도서 컨텐츠 UI
-  Widget _RecommendedBookContent(String name, String author, String publisher) => Card(
-      elevation: 1.0,
-      margin: EdgeInsets.only(top: 16.0, left: 4.0, right: 4.0, bottom: 4.0),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(0.0),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.only(bottom: 8.0),
-        child: Container(
-          width: 120.0,
-          height: 260.0,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Image.asset(R.drawable.sample, width:120, height: 170),
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0, bottom: 4.0, left: 6.0, right: 6.0),
-                child: Text(name, style: TextStyle(
-                  fontSize: 14.0,
-                  fontWeight: FontWeight.w500,
-                )),
-              ),
-              Text(author, style: defaultTextStyle()),
-              Text(publisher, style: defaultTextStyle()),
-            ],
-          ),
-        ),
-      ),
-    );
-
   // 카테고리 UI
   Widget _CategoreyWidget() => GridView.count(
       shrinkWrap: true,
@@ -164,6 +103,67 @@ class LoanWidget extends StatelessWidget {
           ],
         ),
       ),
+  );
+
+  // 추천도서 UI
+  Widget _RecommenderBookWidget() => Column(
+    children: <Widget>[
+      Text(
+        "추천 도서",
+        style: TextStyle(
+          fontSize: 20.0,
+          fontWeight: FontWeight.w700,
+        ),
+      ),
+      SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: _getEndorseBooksWidget(),
+          )
+      )
+    ],
+  );
+
+  // 추천도서 리스트를 UI로 변환합니다.
+  List<Widget> _getEndorseBooksWidget() {
+    List<Widget> list = List();
+    for(Book b in _controller.getEndorseBooks(books)) {
+      list.add(_RecommendedBookContent(b.name, b.author, b.publisher));
+    }
+    return list;
+  }
+
+  // 추천도서 컨텐츠 UI
+  Widget _RecommendedBookContent(String name, String author, String publisher) => Card(
+    elevation: 1.0,
+    margin: EdgeInsets.only(top: 16.0, left: 4.0, right: 4.0, bottom: 4.0),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(0.0),
+    ),
+    child: Padding(
+      padding: const EdgeInsets.only(bottom: 8.0),
+      child: Container(
+        width: 120.0,
+        height: 260.0,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Image.asset(R.drawable.sample, width:120, height: 170),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0, bottom: 4.0, left: 6.0, right: 6.0),
+              child: Text(name, style: TextStyle(
+                fontSize: 14.0,
+                fontWeight: FontWeight.w500,
+              )),
+            ),
+            Text(author, style: defaultTextStyle()),
+            Text(publisher, style: defaultTextStyle()),
+          ],
+        ),
+      ),
+    ),
   );
 }
 

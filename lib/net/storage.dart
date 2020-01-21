@@ -27,16 +27,16 @@ class Storage {
 
   // 파일을 기록합니다.
   Future<bool> writeFile(Book content) async {
-    List<int> books_id_list = List();
-    List<int> books_id_list_add = List();
+    List<String> books_id_list = List();
+    List<String> books_id_list_add = List();
     final file = await _localFile;
     books_id_list = await readFile();
-    for(int i in books_id_list) {
+    for(String i in books_id_list) {
       if(i == content.id)
         return false;
     }
 
-    books_id_list_add = List<int>.from(books_id_list);
+    books_id_list_add = List<String>.from(books_id_list);
     books_id_list_add.add(content.id);
 
     await renewFile(books_id_list_add);
@@ -44,11 +44,11 @@ class Storage {
   }
 
   // 파일을 가져와 해석합니다.
-  Future<List<int>> readFile() async {
-    List<int> contents;
+  Future<List<String>> readFile() async {
     try {
       final file = await _localFile;
-      contents = utf8.encode(file.readAsStringSync());
+      List<String> contents;
+      contents = await file.readAsStringSync().split(" ");
 
       return contents;
     } catch (e) {
@@ -65,11 +65,16 @@ class Storage {
   }
 
   // 파일을 갱신합니다.
-  Future<void> renewFile(List<int> books_id) async {
+  Future<void> renewFile(List<String> books_id) async {
     final file = await _localFile;
 
     try {
-      file.writeAsStringSync(utf8.decode(books_id));
+      String row_data = "";
+      for(String book_id in books_id){
+        if(book_id == "") continue;
+        row_data += book_id + " ";
+      }
+      file.writeAsStringSync(row_data);
       print(file.path + "에 '$name' 파일이 갱신되었습니다!");
     } catch(e) {
       print("오류 : 파일이 갱신되지 않았습니다.");

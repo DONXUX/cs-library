@@ -1,10 +1,10 @@
 import 'package:meta/meta.dart';
 
 /// 도서에 대한 자세한 정보를 담고 있는 클래스입니다.
-/// { ID, 도서 이름, 저자, 출판사, 출판년도, 종류, 남은 갯수, 대출 가능상태 }로 이루어져 있습니다.
+/// { 고유변호, 도서 이름, 저자, 출판사, 출판년도, 종류, 남은 갯수, 대출 가능상태 }로 이루어져 있습니다.
 
 class Book {
-  final int id;
+  final String id;
   final String name;
   final String author;
   final String publisher;

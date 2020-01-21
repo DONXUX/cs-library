@@ -13,13 +13,11 @@ import 'package:flutter/material.dart';
 class BookListController extends IController {
   List<Book> _filterBooks;      // 필터링을 거친 리스트
   List<Book> _books;            // 서버로부터 다운받은 전체 리스트
-  List<int> _favorite_books_id;
+  List<String> _favorite_books_id;
   int _category;
   bool _searchMode;
   bool _favoritesMode;
   String searchStr = "";        // 검색 문자열
-
-  Debug d = Debug();
 
   @override
   Future<void> init(BuildContext context, {void Function(Runnable) setState}) async {
@@ -62,7 +60,7 @@ class BookListController extends IController {
     print("다운로드 진행...");
     await getFavoriteBooks();
     _books = await tryDownloadBooks();
-    for(int id in _favorite_books_id){
+    for(String id in _favorite_books_id){
       for(Book b in _books){
         if(b.id == id) {
           b.favorite = true;
@@ -140,7 +138,7 @@ class BookListController extends IController {
     // 즐겨찾기 모드
     if(favoritesMode){
       print("즐겨찾기");
-      for(int idx in _favorite_books_id){
+      for(String idx in _favorite_books_id){
         for(Book b in _books){
           if(b.id == idx) {
             _filterBooks.add(b);
@@ -169,14 +167,14 @@ class BookListController extends IController {
   Future<void> delFavoriteBooks(Book book) async {
       Storage file = Storage("favorite_ids.txt");
       _favorite_books_id = await file.readFile();
-      List<int> renewList = List<int>.from(_favorite_books_id);
-      int idx = 0;
-      for(int b in renewList) {
+      List<String> renewList = List<String>.from(_favorite_books_id);
+      int cnt = 0;
+      for(String b in renewList) {
         if(b == book.id) {
-          renewList.removeAt(idx);
+          renewList.removeAt(cnt);
           break;
         }
-        idx++;
+        cnt++;
       }
     print("renewList : $renewList");
     await file.renewFile(renewList);
@@ -194,7 +192,7 @@ class BookListController extends IController {
   // 즐겨찾기에 등록된 도서 아이디를 가져옵니다.
   Future<void> getFavoriteBooks() async {
     Storage file = Storage("favorite_ids.txt");
-    List<int> list = await file.readFile();
+    List<String> list = await file.readFile();
     print("가져온 데이터 : $list");
     _favorite_books_id = list;
   }

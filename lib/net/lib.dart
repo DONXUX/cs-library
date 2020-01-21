@@ -13,7 +13,7 @@ List<Map<String, String>> BookToJSON(List<Book> books) {
 
   for(var book in books){
     Map<String, String> j = {
-      "idx": book.id.toString(),
+      "idx": book.id,
       "name": book.name,
       "author": book.author,
       "publisher": book.publisher,
@@ -31,7 +31,7 @@ List<Book> JSONToBook(List<dynamic> jsons) {
   List<Book> books = List();
   for(var json in jsons){
     Book b = Book(
-      id: int.parse(json['idx']),
+      id: json['idx'],
       name: json['name'],
       author: json['author'],
       publisher: json['publisher'],

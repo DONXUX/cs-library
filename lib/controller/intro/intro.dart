@@ -24,6 +24,8 @@ class IntroController extends IController {
       print("인트로 도서 다운완료!");
       _convertMainWidget(books);
       _permission();
+      Storage file = Storage("favorite_ids.txt");
+      file.delAllFile();
     });
   }
 
