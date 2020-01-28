@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:cs_book_loan/controller/main/loan.dart';
 import 'package:cs_book_loan/data/book.dart';
+import 'package:cs_book_loan/net/lib.dart';
 import 'package:cs_book_loan/res/lib.dart';
 import 'package:cs_book_loan/widget/common/components.dart';
 import 'package:cs_book_loan/widget/common/footer.dart';
@@ -128,13 +129,13 @@ class LoanWidget extends StatelessWidget {
   List<Widget> _getEndorseBooksWidget() {
     List<Widget> list = List();
     for(Book b in _controller.getEndorseBooks(books)) {
-      list.add(_RecommendedBookContent(b.name, b.author, b.publisher));
+      list.add(_RecommendedBookContent(b));
     }
     return list;
   }
 
   // 추천도서 컨텐츠 UI
-  Widget _RecommendedBookContent(String name, String author, String publisher) => Card(
+  Widget _RecommendedBookContent(Book book) => Card(
     elevation: 1.0,
     margin: EdgeInsets.only(top: 16.0, left: 4.0, right: 4.0, bottom: 4.0),
     shape: RoundedRectangleBorder(
@@ -150,16 +151,16 @@ class LoanWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Image.asset(R.drawable.sample, width:120, height: 170),
+            Image.network('$PROTOCOL://$HOST:$PORT/titleImg/' + book.id + '.png', width:120, height: 170),
             Padding(
               padding: const EdgeInsets.only(top: 8.0, bottom: 4.0, left: 6.0, right: 6.0),
-              child: Text(name, style: TextStyle(
+              child: Text(book.name, style: TextStyle(
                 fontSize: 14.0,
                 fontWeight: FontWeight.w500,
               )),
             ),
-            Text(author, style: defaultTextStyle()),
-            Text(publisher, style: defaultTextStyle()),
+            Text(book.author, style: defaultTextStyle()),
+            Text(book.publisher, style: defaultTextStyle()),
           ],
         ),
       ),

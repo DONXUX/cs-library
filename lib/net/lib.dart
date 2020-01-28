@@ -31,7 +31,7 @@ List<Book> JSONToBook(List<dynamic> jsons) {
   List<Book> books = List();
   for(var json in jsons){
     Book b = Book(
-      id: json['idx'],
+      id: json['idx'].toString(),
       name: json['name'],
       author: json['author'],
       publisher: json['publisher'],

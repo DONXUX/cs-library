@@ -1,5 +1,6 @@
 import 'package:cs_book_loan/controller/list/book_list.dart';
 import 'package:cs_book_loan/data/book.dart';
+import 'package:cs_book_loan/net/lib.dart';
 import 'package:cs_book_loan/res/lib.dart';
 import 'package:cs_book_loan/res/widgets.dart';
 import 'package:cs_book_loan/widget/common/components.dart';
@@ -116,8 +117,7 @@ class _BookListWidgetState extends State<BookListWidget> {
               padding: EdgeInsets.all(0.0),
               child: ListTile(
                 // 도서 표지
-                // TODO : 도서 표지 UI 구현
-                leading: Image.asset(R.drawable.sample),
+                leading: Image.network('$PROTOCOL://$HOST:$PORT/titleImg/' + book.id + '.png'),
 
                 // 도서 제목
                 title: Text(
