@@ -113,44 +113,14 @@ class _BookListWidgetState extends State<BookListWidget> {
         Card(
             margin: EdgeInsets.all(8.0),
             elevation: 2.0,
-            child: Container(
-              //height: 130,
-              padding: EdgeInsets.all(0.0),
-              child: ListTile(
-                // 도서 표지
-                leading: Image.network('$PROTOCOL://$HOST:$PORT/titleImg/' + book.id + '.png'),
-
-                // 도서 제목
-                title: Text(
-                  book.name,
-                  style: headTextStyle(),
-                ),
-
-                // 도서 저자, 출판사, 출판년도
-                subtitle: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      book.author + ", " + book.publisher + ", ${book.publish_year}",
-                    ),
-                    Text(
-                      book.loan_status ? R.string.possible_loan : R.string.impossible_loan,
-                      style: book.loan_status ? possibleLoanTextStyle() : impossibleLoanTextStyle(),
-                    )
-                  ],
-                ),
-                isThreeLine: true,
-                trailing: IconButton(
-                    icon: Icon(Icons.grade),
-                    color: book.favorite ? Colors.amber : Colors.black38,
-                  onPressed: (){
-                      book.favorite ? _controller.delFavoriteBooks(book) : _controller.addFavoriteBooks(book);
-                      setState((){
-                        print("SETSTATE!");
-                      });
-                  },
+            child: FractionallySizedBox(
+              widthFactor: 1.0,
+              child: Container(
+                height: 110.0,
+                margin: EdgeInsets.all(0.0),
+                padding: EdgeInsets.all(0.0),
+                child: Center(
+                  child: _ContentTile(book),
                 ),
               ),
             ),
@@ -159,6 +129,66 @@ class _BookListWidgetState extends State<BookListWidget> {
             )
         ),
       ],
+    );
+  }
+
+  Widget _ContentTile(Book book) {
+    return FractionallySizedBox(
+      widthFactor: 1.0,
+      child: Container(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.center,
+           children: <Widget>[
+             // 도서 표지
+             Image.network('$PROTOCOL://$HOST:$PORT/titleImg/' + book.id + '.png', width: 88.0),
+             Expanded(
+               child: Padding(
+                 padding: const EdgeInsets.only(left: 16.0),
+                 child: Column(
+                   mainAxisAlignment: MainAxisAlignment.start,
+                   mainAxisSize: MainAxisSize.min,
+                   crossAxisAlignment: CrossAxisAlignment.start,
+                   children: <Widget>[
+                     // 도서 제목
+                     Text(
+                       book.name,
+                       style: headTextStyle(),
+                     ),
+                     // 도서 저자, 출판사, 출판년도
+                     Text(
+                       book.author + ", " + book.publisher + ", ${book.publish_year}",
+                       style: TextStyle(
+                         fontSize: 13.0,
+                       ),
+                     ),
+                     // 대출 가능 여부
+                     Text(
+                       book.loan_status ? R.string.possible_loan : R.string.impossible_loan,
+                       style: book.loan_status ? possibleLoanTextStyle() : impossibleLoanTextStyle(),
+                     )
+                   ],
+                 ),
+               ),
+             ),
+             Align(
+               alignment: Alignment.centerRight,
+               child: SizedBox(
+                 width: 60.0,
+                 child: IconButton(
+                   icon: Icon(Icons.grade),
+                   color: book.favorite ? Colors.amber : Colors.black38,
+                   onPressed: (){
+                     book.favorite ? _controller.delFavoriteBooks(book) : _controller.addFavoriteBooks(book);
+                     setState((){});
+                   },
+                 ),
+               ),
+             ),
+           ],
+        ),
+      ),
     );
   }
 }

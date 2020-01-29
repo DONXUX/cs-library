@@ -145,7 +145,7 @@ class LoanWidget extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 8.0),
       child: Container(
         width: 120.0,
-        height: 260.0,
+        height: 290.0,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
