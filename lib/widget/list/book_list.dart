@@ -7,7 +7,7 @@ import 'package:cs_book_loan/widget/common/components.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-/// 도서 리스트 UI를 관리합니다.
+/// 도서 리스트 UI를 관리합니다.`
 
 class BookListWidget extends StatefulWidget {
   @override
@@ -16,7 +16,7 @@ class BookListWidget extends StatefulWidget {
 
 class _BookListWidgetState extends State<BookListWidget> {
   final BookListController _controller = BookListController();
-
+  ScrollController _scrollController;
   int _category;
   bool _searchMode;
   bool _favoritesMode = false;
@@ -96,10 +96,11 @@ class _BookListWidgetState extends State<BookListWidget> {
   Widget _BookListWidget() {
     return Container(
       child: ListView(
+        key: PageStorageKey<String>('books'),
         children: _controller.filterBooks
             .map(_bookContents)
             .toList(),
-      )
+      ),
     );
   }
 
@@ -146,7 +147,9 @@ class _BookListWidgetState extends State<BookListWidget> {
                     color: book.favorite ? Colors.amber : Colors.black38,
                   onPressed: (){
                       book.favorite ? _controller.delFavoriteBooks(book) : _controller.addFavoriteBooks(book);
-                      setState((){});
+                      setState((){
+                        print("SETSTATE!");
+                      });
                   },
                 ),
               ),
