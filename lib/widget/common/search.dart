@@ -21,7 +21,7 @@ class SearchBar extends StatelessWidget{
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(30),
 
       ),
       child: Padding(
@@ -45,7 +45,6 @@ class SearchField extends StatefulWidget {
 class _SearchFieldState extends State<SearchField> {
   final _controller = TextEditingController();
   final _focusNode = FocusNode();
-  String inputs = "test";
   MainController _mainController;
   _SearchFieldState(MainController mainController){
     this._mainController = mainController;
@@ -53,7 +52,6 @@ class _SearchFieldState extends State<SearchField> {
 
   void initState(){
     super.initState();
-    _mainController.setSearchStr(inputs); // DEBUG
     _focusNode.addListener((){
       if(_focusNode.hasFocus){
         _controller.selection = TextSelection(baseOffset: 0, extentOffset: _controller.text.length);
@@ -80,6 +78,7 @@ class _SearchFieldState extends State<SearchField> {
       onEditingComplete: (){
         _mainController.setSearchStr(_controller.text);
         _mainController.convertSearchListWidget(0);
+        _focusNode.requestFocus(new FocusNode());
       },
     );
   }
