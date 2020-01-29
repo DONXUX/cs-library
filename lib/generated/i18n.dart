@@ -24,20 +24,36 @@ class S implements WidgetsLocalizations {
   String get app_name => "CS Library";
   String get book => "Book";
   String get book_list => "Book list";
+  String get category_ai => "AI";
+  String get category_algorithm => "Data Structure/Algorithm";
+  String get category_all => "All";
+  String get category_computer_engineering => "Computer Engineering";
+  String get category_db => "Database";
+  String get category_development_methodology => "Development Methodology";
+  String get category_graphics => "Graphics";
+  String get category_mobile => "Mobile Programming";
+  String get category_network => "Network/Security";
+  String get category_os => "OS";
+  String get category_programming_lang => "Programming Language";
+  String get category_web => "Web Programming";
   String get common_alert_cancel => "Cancel";
   String get common_alert_choose_no => "No";
   String get common_alert_choose_yes => "Yes";
   String get common_alert_confirm => "Confirm";
   String get common_alert_field_close_app => "Do you want to close CS Library?";
+  String get common_alert_field_network_error => "A network error has accurred.";
   String get common_alert_select => "Select";
   String get common_alert_title => "Notice";
   String get copyright => "Copyright 2020, GNU Computational Development Lab all rights reserved.";
   String get favorite => "Favorite";
   String get guide => "Loan Information: Visit the Practice Class (30-311) to borrow.";
   String get impossible_loan => "Loan Impossible";
+  String get not_exist_books => "Books don't exist!";
   String get possible_loan => "Loan Possible";
+  String get recommended_books => "Recommended Books";
   String get remaining_books => "Remaining books";
   String get search => "Search";
+  String get search_result => "Search Result";
   String get volume => "book";
 }
 
@@ -60,29 +76,61 @@ class $ko_KR extends S {
   @override
   String get common_alert_field_close_app => "CS Library 을 종료하시겠습니까?";
   @override
-  String get common_alert_choose_yes => "예";
-  @override
   String get common_alert_select => "선택";
+  @override
+  String get category_all => "전체";
+  @override
+  String get category_algorithm => "자료구조/알고리즘";
   @override
   String get common_alert_confirm => "확인";
   @override
+  String get search => "검색";
+  @override
+  String get not_exist_books => "도서가 없습니다!";
+  @override
+  String get common_alert_field_network_error => "네트워크 오류가 발생하였습니다.";
+  @override
+  String get category_mobile => "모바일 프로그래밍";
+  @override
+  String get category_programming_lang => "프로그래밍 언어";
+  @override
+  String get book_list => "도서 목록";
+  @override
+  String get guide => "대출안내 : 실습조교실(30-311호)에 방문하셔서 대출하시면 됩니다.";
+  @override
+  String get category_ai => "인공지능";
+  @override
+  String get recommended_books => "추천 도서";
+  @override
+  String get category_computer_engineering => "컴퓨터 공학";
+  @override
+  String get search_result => "검색결과";
+  @override
+  String get common_alert_choose_yes => "예";
+  @override
+  String get category_os => "OS";
+  @override
   String get volume => "권";
   @override
-  String get app_name => "CS Library";
+  String get category_network => "네트워크/보안";
   @override
-  String get search => "검색";
+  String get app_name => "CS Library";
   @override
   String get remaining_books => "남은 도서";
   @override
   String get impossible_loan => "대출불가";
   @override
-  String get book_list => "도서 목록";
+  String get category_db => "데이터베이스";
+  @override
+  String get category_graphics => "그래픽";
   @override
   String get favorite => "즐겨찾기";
   @override
   String get possible_loan => "대출가능";
   @override
-  String get guide => "대출안내 : 실습조교실(30-311호)에 방문하셔서 대출하시면 됩니다.";
+  String get category_web => "웹 프로그래밍";
+  @override
+  String get category_development_methodology => "개발 방법론";
 }
 
 class $en extends S {

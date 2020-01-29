@@ -13,6 +13,7 @@ import "dart:math";
 
 class LoanController extends IController {
   List<Book> _books;
+  int _maxEndorseNum = 7;
   /// 객체를 초기화합니다.
   @override
   void init(BuildContext context, {void Function(Runnable) setState}) async {
@@ -25,10 +26,14 @@ class LoanController extends IController {
   void convertListWidget(int category)
   => Navigator.pushNamed(context, R.widget.list, arguments: ListArguments(category, false, ""));
 
+  // 도서 리스트 일부를 랜덤으로 뽑습니다.
   List<Book> getEndorseBooks(List<Book> books){
+    if(books.length < _maxEndorseNum)
+      _maxEndorseNum = books.length;
+
     List<Book> recommed_books = List();
     books.shuffle();
-    for(var i = 0; i < 4; i++) {
+    for(var i = 0; i < _maxEndorseNum; i++) {
       Book element = books[i];
       recommed_books.add(element);
     }

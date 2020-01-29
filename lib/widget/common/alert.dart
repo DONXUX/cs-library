@@ -35,7 +35,7 @@ void _dialogSimple(final BuildContext context, final String msg,
 
 /// 종료 알림창을 띄웁니다.
 Future<bool> dialogNetworkError(final BuildContext context) async {
-  _dialogAsk(context, "네트워크 오류", onConfirm: exit);
+  _dialogAsk(context, R.string.common_alert_field_network_error, onConfirm: exit);
   return false;
 }
 

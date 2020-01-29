@@ -70,7 +70,7 @@ class _BookListWidgetState extends State<BookListWidget> {
 
   Widget AppBarWidget() {
     return AppBar(
-      title: _controller.searchMode ? Text("검색결과") : Text(_controller.getModeString()),
+      title: _controller.searchMode ? Text(R.string.search_result) : Text(_controller.getModeString()),
     );
   }
 
@@ -83,7 +83,7 @@ class _BookListWidgetState extends State<BookListWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Icon(Icons.book, size: 100.0, color: Colors.black38),
-            Text("도서가 없습니다!", style: TextStyle(
+            Text(R.string.not_exist_books, style: TextStyle(
               fontSize: 20.0,
               color: Colors.black38,
             ))

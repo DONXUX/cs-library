@@ -6,6 +6,7 @@ import 'package:cs_book_loan/data/debug.dart';
 import 'package:cs_book_loan/lib.dart';
 import 'package:cs_book_loan/net/client.dart';
 import 'package:cs_book_loan/net/storage.dart';
+import 'package:cs_book_loan/res/lib.dart';
 import 'package:flutter/material.dart';
 
 /// 도서 리스트 동작을 담당합니다.
@@ -18,6 +19,7 @@ class BookListController extends IController {
   bool _searchMode;
   bool _favoritesMode;
   String searchStr = "";        // 검색 문자열
+  String fileName = "favorite_ids.txt";
 
   @override
   Future<void> init(BuildContext context, {void Function(Runnable) setState}) async {
@@ -165,7 +167,7 @@ class BookListController extends IController {
 
   // 즐겨찾기 파일을 제거합니다.
   Future<void> delFavoriteBooks(Book book) async {
-      Storage file = Storage("favorite_ids.txt");
+      Storage file = Storage(fileName);
       _favorite_books_id = await file.readFile();
       List<String> renewList = List<String>.from(_favorite_books_id);
       int cnt = 0;
@@ -183,7 +185,7 @@ class BookListController extends IController {
 
   // 즐겨찾기 파일을 갱신합니다.
   Future<void> setFavoriteBooks(Book book) async {
-    Storage file = Storage("favorite_ids.txt");
+    Storage file = Storage(fileName);
     if(!await file.writeFile(book)){
       print("데이터 갱신에 실패했습니다.");
     }
@@ -191,7 +193,7 @@ class BookListController extends IController {
 
   // 즐겨찾기에 등록된 도서 아이디를 가져옵니다.
   Future<void> getFavoriteBooks() async {
-    Storage file = Storage("favorite_ids.txt");
+    Storage file = Storage(fileName);
     List<String> list = await file.readFile();
     print("가져온 데이터 : $list");
     _favorite_books_id = list;
@@ -199,14 +201,14 @@ class BookListController extends IController {
 
   // 즐겨찾기한 모든 책을 삭제합니다.
   Future<void> allDelFavoriteBooks() async {
-    Storage file = Storage("favorite_ids.txt");
+    Storage file = Storage(fileName);
     file.delAllFile();
     print("즐겨찾기 데이터가 삭제되었습니다!");
   }
 
   // AppBar에 띄워질 스트링입니다.
   String getModeString() {
-    if(_searchMode) return "검색결과";
+    if(_searchMode) return R.string.search_result;
     else {
       if(category != 0) return CategoryList()[category - 1].category;
       return CategoryList()[category].category;

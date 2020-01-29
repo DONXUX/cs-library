@@ -70,6 +70,7 @@ class LoanWidget extends StatelessWidget {
 
   // 카테고리 UI
   Widget _CategoreyWidget() => GridView.count(
+    physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       crossAxisCount: 4,
       padding: EdgeInsets.only(bottom: 16.0),
@@ -87,30 +88,35 @@ class LoanWidget extends StatelessWidget {
 
   // 카테고리 컨텐츠 UI
   Widget _CategoryContent(final Icon icon, final String category, int key) => GestureDetector(
-    onTap: (){ _controller.convertListWidget(key); },
-    child: Card(
-        elevation: 2.0,
-        margin: EdgeInsets.all(0.0),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(0.0),
+    //onTap: (){ ; },
+    child: InkWell(
+      highlightColor: Colors.indigo,
+      splashColor: Colors.indigoAccent,
+      onTap:(){ _controller.convertListWidget(key); },
+      child: Card(
+          elevation: 2.0,
+          margin: EdgeInsets.all(0.0),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(0.0),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              icon,
+              Text(category, style: TextStyle(fontSize: 11.0)),
+            ],
+          ),
         ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            icon,
-            Text(category, style: TextStyle(fontSize: 11.0)),
-          ],
-        ),
-      ),
+    ),
   );
 
   // 추천도서 UI
   Widget _RecommenderBookWidget() => Column(
     children: <Widget>[
       Text(
-        "추천 도서",
+        R.string.recommended_books,
         style: TextStyle(
           fontSize: 20.0,
           fontWeight: FontWeight.w700,
@@ -146,22 +152,24 @@ class LoanWidget extends StatelessWidget {
       child: Container(
         width: 120.0,
         height: 290.0,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Image.network('$PROTOCOL://$HOST:$PORT/titleImg/' + book.id + '.png', width:120, height: 170),
-            Padding(
-              padding: const EdgeInsets.only(top: 8.0, bottom: 4.0, left: 6.0, right: 6.0),
-              child: Text(book.name, style: TextStyle(
-                fontSize: 14.0,
-                fontWeight: FontWeight.w500,
-              )),
-            ),
-            Text(book.author, style: defaultTextStyle()),
-            Text(book.publisher, style: defaultTextStyle()),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Image.network('$PROTOCOL://$HOST:$PORT/titleImg/' + book.id + '.png', width:120, height: 170),
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0, bottom: 4.0, left: 6.0, right: 6.0),
+                child: Text(book.name, style: TextStyle(
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.w500,
+                )),
+              ),
+              Text(book.author, style: defaultTextStyle(), overflow: TextOverflow.fade,),
+              Text(book.publisher, style: defaultTextStyle(), overflow: TextOverflow.fade,),
+            ],
+          ),
         ),
       ),
     ),

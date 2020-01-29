@@ -1,3 +1,4 @@
+import 'package:cs_book_loan/res/lib.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -21,17 +22,17 @@ class Category {
 
 // 카테고리 리스트 { 아이콘, 카테고리 이름, 고유 키 값 }
 List<Category> CategoryList() => [
-  Category(Icon(MdiIcons.desktopMacDashboard), "전체", 0),
-  Category(Icon(Icons.computer), "컴퓨터 공학", 2),
-  Category(Icon(MdiIcons.languageCpp), "프로그래밍 언어", 3),
-  Category(Icon(MdiIcons.cogs), "개발 방법론", 4),
-  Category(Icon(MdiIcons.ipNetwork), "네트워크/보안", 5),
-  Category(Icon(MdiIcons.brain), "인공지능", 6),
-  Category(Icon(MdiIcons.windows), "OS", 7),
-  Category(Icon(MdiIcons.database), "데이터베이스", 8),
-  Category(Icon(MdiIcons.graph), "자료구조/알고리즘", 9),
-  Category(Icon(Icons.http), "웹 프로그래밍", 10),
-  Category(Icon(Icons.phone_android), "모바일 프로그래밍", 11),
-  Category(Icon(MdiIcons.aspectRatio), "그래픽", 12),
+  Category(Icon(MdiIcons.desktopMacDashboard), R.string.category_all, 0),
+  Category(Icon(Icons.computer), R.string.category_computer_engineering, 2),
+  Category(Icon(MdiIcons.languageCpp), R.string.category_programming_lang, 3),
+  Category(Icon(MdiIcons.cogs), R.string.category_development_methodology, 4),
+  Category(Icon(MdiIcons.ipNetwork), R.string.category_network, 5),
+  Category(Icon(MdiIcons.brain), R.string.category_ai, 6),
+  Category(Icon(MdiIcons.windows), R.string.category_os, 7),
+  Category(Icon(MdiIcons.database), R.string.category_db, 8),
+  Category(Icon(MdiIcons.graph), R.string.category_algorithm, 9),
+  Category(Icon(Icons.http), R.string.category_web, 10),
+  Category(Icon(Icons.phone_android), R.string.category_web, 11),
+  Category(Icon(MdiIcons.aspectRatio), R.string.category_graphics, 12),
 ];
 
