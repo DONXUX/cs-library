@@ -29,7 +29,6 @@ class Storage {
   Future<bool> writeFile(Book content) async {
     List<String> books_id_list = List();
     List<String> books_id_list_add = List();
-    final file = await _localFile;
     books_id_list = await readFile();
     for(String i in books_id_list) {
       if(i == content.id)

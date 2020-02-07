@@ -9,7 +9,7 @@
   "recommended_books" : "추천 도서",
 
   "possible_loan" : "대출가능",
-  "impossible_loan" : "대출불가",
+  "impossible_loan" : "대출 중",
 
   "favorite" : "즐겨찾기",
   "search" : "검색",

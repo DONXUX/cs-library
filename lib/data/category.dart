@@ -32,7 +32,7 @@ List<Category> CategoryList() => [
   Category(Icon(MdiIcons.database), R.string.category_db, 8),
   Category(Icon(MdiIcons.graph), R.string.category_algorithm, 9),
   Category(Icon(Icons.http), R.string.category_web, 10),
-  Category(Icon(Icons.phone_android), R.string.category_web, 11),
+  Category(Icon(Icons.phone_android), R.string.category_mobile, 11),
   Category(Icon(MdiIcons.aspectRatio), R.string.category_graphics, 12),
 ];
 

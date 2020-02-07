@@ -47,7 +47,7 @@ class S implements WidgetsLocalizations {
   String get copyright => "Copyright 2020, GNU Computational Development Lab all rights reserved.";
   String get favorite => "Favorite";
   String get guide => "Loan Information: Visit the Practice Class (30-311) to borrow.";
-  String get impossible_loan => "Loan Impossible";
+  String get impossible_loan => "Lending";
   String get not_exist_books => "Books don't exist!";
   String get possible_loan => "Loan Possible";
   String get recommended_books => "Recommended Books";
@@ -118,7 +118,7 @@ class $ko_KR extends S {
   @override
   String get remaining_books => "남은 도서";
   @override
-  String get impossible_loan => "대출불가";
+  String get impossible_loan => "대출 중";
   @override
   String get category_db => "데이터베이스";
   @override
