@@ -12,3 +12,6 @@
 * [권영민 (15, 전산개발 연구실)](https://github.com/ymkwon3)
 * [김학률 (15, 전산개발 연구실)](https://github.com/markyul)
 * [조재준 (15, 시스템소프트웨어 연구실)](https://github.com/Jtree03)
+
+#### 구글 플레이
+https://play.google.com/store/apps/details?id=com.corner.cs_book_loan&hl=ko
